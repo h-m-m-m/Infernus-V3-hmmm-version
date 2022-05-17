@@ -12,6 +12,8 @@
 #include <chrono>
 #include <map>
 
+#include "RenderUtils.h"
+
 #include "../../../Includes/imgui/imgui.h"
 
 #include "../../../Includes/imgui/imgui_impl_win32.h"
@@ -88,19 +90,6 @@ public:
         this->a = vA;
         this->b = vB;
     };
-};
-
-class RenderUtils {
-private:
-    static ImDrawList* draw;
-public:
-    static auto setDrawList(ImDrawList*) -> void;
-    static auto getDrawList(void) -> ImDrawList*;
-public:
-    static auto getTextSize(std::string, float) -> ImVec2;
-    static auto drawText(std::string, float, ImVec2, ImColor) -> void;
-public:
-    static auto fillRect(ImVec4, ImColor, float) -> void;
 };
 
 #endif /* CLIENT_UTILS_UTILS */
