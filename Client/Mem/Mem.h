@@ -17,6 +17,8 @@ public:
     static auto findSig(const char* sig, const char* mod = "Minecraft.Windows.exe") -> uintptr_t;
     static auto findMultiLvlPtr(uintptr_t baseAddr, std::vector<unsigned int> offsets) -> uintptr_t*;
 public:
+    static auto getGameModule(void) -> uintptr_t;
+public:
     template<typename T, typename... Args>
     static auto fastCall(void* func, Args... args) -> T {
         using F = T (__fastcall*)(Args...);
