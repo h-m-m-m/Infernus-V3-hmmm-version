@@ -13,6 +13,8 @@ public:
     uint64_t key = NULL;
 public:
     Module(Category*, std::string);
+public:
+    virtual auto onRender(void) -> void {};
 };
 
 #endif /* CLIENT_INFERNUS_MODULE_MODULE */

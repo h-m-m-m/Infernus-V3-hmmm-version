@@ -14,7 +14,11 @@ public:
     Manager(Client*);
 public:
     auto initHooks(void) -> void;
+public:
     auto initCategories(void) -> void;
+    auto initModules(void) -> void;
+public:
+    auto getCategory(std::string) -> Category*;
 };
 
 #endif /* CLIENT_INFERNUS_MANAGER_MANAGER */

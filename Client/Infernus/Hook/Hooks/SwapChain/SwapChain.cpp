@@ -1,4 +1,5 @@
 #include "SwapChain.h"
+#include "../../../Manager/Manager.h"
 
 Manager* scMgr = nullptr;
 bool initContext = false;
@@ -35,7 +36,12 @@ auto hookPresentD3D12(IDXGISwapChain3* ppSwapChain, UINT syncInterval, UINT flag
 
     auto callRendr = [&]() {
 
-        //
+        for(auto category : scMgr->categories) {
+            for(auto mod : category->modules) {
+                if(mod->isEnabled)
+                    mod->onRender();
+            };
+        };
 
     };
 

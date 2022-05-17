@@ -13,7 +13,7 @@ public:
     std::string name;
     std::vector<Module*> modules;
 public:
-    Category(Manager*);
+    Category(Manager*, std::string);
 };
 
 #endif /* CLIENT_INFERNUS_CATEGORY_CATEGORY */
