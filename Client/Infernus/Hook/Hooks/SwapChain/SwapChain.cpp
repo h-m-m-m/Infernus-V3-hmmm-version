@@ -34,18 +34,8 @@ auto hookPresentD3D12(IDXGISwapChain3* ppSwapChain, UINT syncInterval, UINT flag
     auto window = (HWND)FindWindowA(nullptr, (LPCSTR)"Minecraft");
 
     auto callRendr = [&]() {
-        
-        if(ImGui::BeginMainMenuBar()) {
-            
-            if(ImGui::BeginMenu("Infernus")) {
 
-                ImGui::EndMenu();
-
-            };
-
-            ImGui::EndMainMenuBar();
-
-        };
+        //
 
     };
 
