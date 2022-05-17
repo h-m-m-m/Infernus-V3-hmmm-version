@@ -69,3 +69,7 @@ auto Mem::findMultiLvlPtr(uintptr_t baseAddr, std::vector<unsigned int> offsets)
     
     return (i == offsets.size() ? (uintptr_t*)ptr : nullptr);
 };
+
+auto Mem::getGameModule(void) -> uintptr_t {
+    return (uintptr_t)GetModuleHandle("Minecraft.Windows.exe");
+};
