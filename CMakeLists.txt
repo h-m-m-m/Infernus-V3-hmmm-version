@@ -7,6 +7,7 @@ add_library(Infernus SHARED)
 target_sources(Infernus PRIVATE Infernus.cpp)
 
 add_subdirectory(Includes)
+add_subdirectory(Client)
 
 target_link_libraries(Infernus PRIVATE minhook)
 

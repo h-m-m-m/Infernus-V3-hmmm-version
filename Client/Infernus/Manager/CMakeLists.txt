@@ -1,0 +1,1 @@
+target_sources(Infernus PRIVATE Manager.cpp)

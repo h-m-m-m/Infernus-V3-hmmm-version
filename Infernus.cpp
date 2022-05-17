@@ -1,8 +1,8 @@
-#include <Windows.h>
+#include "Client/Client.h"
 
 auto init() -> void {
     
-    //
+    new Client("Infernus", "3.0");
 
 };
 
