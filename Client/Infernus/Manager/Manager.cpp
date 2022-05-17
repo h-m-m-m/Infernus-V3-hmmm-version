@@ -9,10 +9,20 @@ Manager::Manager(Client* client) {
 #include "../Hook/Hooks/SwapChain/SwapChain.h"
 
 auto Manager::initHooks(void) -> void {
+
+    if(!this->hooks.empty())
+        return;
     
     if(MH_Initialize() != MH_OK)
         return Utils::debugLog("Failed to initialize MinHook!");
     
-    this->hooks.push_back(new SwapChain_Hook(this));
+    new SwapChain_Hook(this);
+
+};
+
+auto Manager::initCategories(void) -> void {
+
+    if(!this->categories.empty())
+        return;
 
 };
