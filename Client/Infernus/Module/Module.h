@@ -4,6 +4,8 @@
 #include "../../Mem/Mem.h"
 #include "../../Utils/Utils.h"
 
+#include "../../SDK/Minecraft.h"
+
 class Module {
 public:
     class Category* category = nullptr;
