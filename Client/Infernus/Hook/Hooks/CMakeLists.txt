@@ -1,2 +1,3 @@
 add_subdirectory(SwapChain)
 add_subdirectory(GameMode)
+add_subdirectory(Mouse)

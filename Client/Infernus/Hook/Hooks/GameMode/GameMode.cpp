@@ -6,10 +6,11 @@ typedef void (__thiscall* GameMode_Tick)(GameMode*);
 GameMode_Tick _GameMode_Tick;
 
 auto GameMode_Tick_Callback(GameMode* GM) -> void {
-    
-    Utils::debugLog("!");
+
+    //
 
     _GameMode_Tick(GM);
+    
 };
 
 auto GameMode_Hook::init(void) -> void {

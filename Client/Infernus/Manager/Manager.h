@@ -19,6 +19,8 @@ public:
     auto initModules(void) -> void;
 public:
     auto getCategory(std::string) -> Category*;
+public:
+    auto setImGuiStyles(void) -> void;
 };
 
 #endif /* CLIENT_INFERNUS_MANAGER_MANAGER */
