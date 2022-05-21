@@ -10,6 +10,7 @@ public:
     };
 public:
     virtual auto onRender(void) -> void override;
+    virtual auto onRenderOptions(void) -> void override;
 };
 
 #endif /* CLIENT_INFERNUS_MODULE_MODULES_OTHER_TESTMODULE */
