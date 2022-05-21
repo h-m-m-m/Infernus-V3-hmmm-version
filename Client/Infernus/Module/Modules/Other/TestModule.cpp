@@ -42,6 +42,7 @@ auto TestModule::onRender(void) -> void {
 
                         };
 
+                        mod->onRenderOptions();
                         ImGui::EndMenu();
 
                     };
@@ -57,5 +58,11 @@ auto TestModule::onRender(void) -> void {
         ImGui::End();
 
     };
+
+};
+
+auto TestModule::onRenderOptions(void) -> void {
+
+    //
 
 };
