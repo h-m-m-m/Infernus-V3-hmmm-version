@@ -17,6 +17,7 @@ public:
     Module(Category*, std::string);
 public:
     virtual auto onRender(void) -> void {};
+    virtual auto onRenderOptions(void) -> void {};
 };
 
 #endif /* CLIENT_INFERNUS_MODULE_MODULE */
