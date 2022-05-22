@@ -11,12 +11,15 @@ public:
     std::vector<Hook*> hooks;
     std::vector<Category*> categories;
 public:
+    bool isRunning = true;
+public:
     Manager(Client*);
 public:
     auto initHooks(void) -> void;
 public:
     auto initCategories(void) -> void;
     auto initModules(void) -> void;
+    auto baseTick(void) -> void;
 public:
     auto getCategory(std::string) -> Category*;
 public:
