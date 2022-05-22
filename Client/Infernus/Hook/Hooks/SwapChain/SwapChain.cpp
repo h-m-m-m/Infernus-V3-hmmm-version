@@ -47,6 +47,9 @@ auto hookPresentD3D12(IDXGISwapChain3* ppSwapChain, UINT syncInterval, UINT flag
 
     };
 
+    if(!scMgr->isRunning)
+        goto out;
+
     if(SUCCEEDED(ppSwapChain->GetDevice(IID_PPV_ARGS(&d3d11Device)))) {
         RenderUtils::deviceType = ID3D_Device_Type::D3D11;
     } else if(SUCCEEDED(ppSwapChain->GetDevice(IID_PPV_ARGS(&d3d12Device)))) {
