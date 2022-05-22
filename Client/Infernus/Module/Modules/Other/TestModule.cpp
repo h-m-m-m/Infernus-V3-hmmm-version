@@ -63,6 +63,19 @@ auto TestModule::onRender(void) -> void {
 
 auto TestModule::onRenderOptions(void) -> void {
 
-    //
+    auto mgr = this->category->manager;
+    auto client = mgr->client;
+
+    if(ImGui::BeginMenu("Options")) {
+
+        if(ImGui::MenuItem(std::string("Uninject " + client->name).c_str())) {
+
+            mgr->isRunning = false;
+
+        };
+        
+        ImGui::EndMenu();
+
+    };
 
 };
