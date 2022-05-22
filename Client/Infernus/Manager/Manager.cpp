@@ -72,17 +72,10 @@ auto Manager::baseTick(void) -> void {
 			for(auto module : category->modules)
 				module->baseTick();
 	};
-
-	Utils::debugLog("Shutting Down!");
 	
 	kiero::shutdown();
-	
-	Sleep(100);
-
 	MH_Uninitialize();
-
 	Sleep(100);
-
 	FreeLibraryAndExitThread(Utils::GetDll(), 1);
 
 };
