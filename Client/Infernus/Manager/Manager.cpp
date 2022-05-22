@@ -61,6 +61,29 @@ auto Manager::initModules(void) -> void {
 
     };
 
+	this->baseTick();
+
+};
+
+auto Manager::baseTick(void) -> void {
+
+	while(this->isRunning) {
+		for(auto category : this->categories)
+			for(auto module : category->modules)
+				module->baseTick();
+	};
+
+	Utils::debugLog("Shutting Down!");
+	
+	kiero::shutdown();
+	
+	Sleep(100);
+
+	MH_Uninitialize();
+
+	Sleep(100);
+
+	FreeLibraryAndExitThread(Utils::GetDll(), 1);
 
 };
 
