@@ -16,6 +16,12 @@ public:
 public:
     Module(Category*, std::string);
 public:
+    auto baseTick(void) -> void;
+public:
+    virtual auto onTick(void) -> void {};
+    virtual auto onEnable(void) -> void {};
+    virtual auto onDisable(void) -> void {};
+public:
     virtual auto onRender(void) -> void {};
     virtual auto onRenderOptions(void) -> void {};
 };
