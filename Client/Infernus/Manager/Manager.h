@@ -11,6 +11,8 @@ public:
     std::vector<Hook*> hooks;
     std::vector<Category*> categories;
 public:
+    std::map<uint64_t, bool> keyMap;
+public:
     bool isRunning = true;
 public:
     Manager(Client*);

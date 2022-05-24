@@ -10,6 +10,7 @@ Manager::Manager(Client* client) {
 #include "../Hook/Hooks/SwapChain/SwapChain.h"
 #include "../Hook/Hooks/GameMode/GameMode.h"
 #include "../Hook/Hooks/Mouse/Mouse.h"
+#include "../Hook/Hooks/Key/Key.h"
 
 auto Manager::initHooks(void) -> void {
 
@@ -22,6 +23,7 @@ auto Manager::initHooks(void) -> void {
     new SwapChain_Hook(this);
     new GameMode_Hook(this);
     new Mouse_Hook(this);
+	new Key_Hook(this);
 
 };
 

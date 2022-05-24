@@ -21,3 +21,11 @@ auto Module::baseTick(void) -> void {
     if(this->isEnabled)
         this->onTick();
 };
+
+auto Module::setKey(uint64_t key) -> void {
+    this->key = key;
+};
+
+auto Module::setState(bool state) -> void {
+    this->isEnabled = state;
+};

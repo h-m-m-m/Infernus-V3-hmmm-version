@@ -1,8 +1,6 @@
 #ifndef CLIENT_INFERNUS_HOOKS_HOOKS_GAMEMODE_GAMEMODE
 #define CLIENT_INFERNUS_HOOKS_HOOKS_GAMEMODE_GAMEMODE
 
-class GameMode; /* Temporary */
-
 #include "../../Hook.h"
 
 class GameMode_Hook : public Hook {

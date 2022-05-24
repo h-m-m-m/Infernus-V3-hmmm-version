@@ -1,4 +1,5 @@
 #include "GameMode.h"
+#include "../../../Manager/Manager.h"
 
 Manager* gmMgr = nullptr;
 
@@ -7,7 +8,12 @@ GameMode_Tick _GameMode_Tick;
 
 auto GameMode_Tick_Callback(GameMode* GM) -> void {
 
-    //
+    for(auto category : gmMgr->categories) {
+        for(auto mod : category->modules) {
+            if(mod->isEnabled)
+                mod->onGameMode(GM);
+        };
+    };
 
     _GameMode_Tick(GM);
     
