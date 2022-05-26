@@ -30,7 +30,26 @@ auto TestModule::onRender(void) -> void {
 
 auto TestModule::onRenderOptions(void) -> void {
 
-    ImGui::Text("Test");
+    auto mgr = this->category->manager;
+    
+    ImGuiIO& io = ImGui::GetIO();
+    auto currFont = ImGui::GetFont();
+    
+    if(ImGui::BeginCombo("Font Switcher", "Select Font")) {
+        
+        for(auto [name, font] : mgr->fonts) {
+
+            if(ImGui::Selectable(name.c_str(), currFont == font)) {
+
+                io.FontDefault = font;
+
+            };
+            
+        };
+
+        ImGui::EndCombo();
+
+    };
 
 };
 
