@@ -79,6 +79,14 @@ auto TabGui::onRender(void) -> void {
 
 auto TabGui::onKey(uint64_t key, bool isDown, bool* cancel) -> void {
 
+    auto instance = Minecraft::getClientInstance();
+    auto mcGame = (instance != nullptr ? instance->getMinecraftGame() : nullptr);
+    
+    auto player = Minecraft::getLocalPlayer();
+
+    if(player != nullptr && mcGame != nullptr && !mcGame->canUseKeys)
+        return;
+
     if(key != VK_LEFT && key != VK_RIGHT && key != VK_DOWN && key != VK_UP || !isDown)
         return;
     
