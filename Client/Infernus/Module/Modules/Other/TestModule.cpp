@@ -5,9 +5,9 @@
 
 auto TestModule::onRender(void) -> void {
 
-    if(std::chrono::duration_cast<std::chrono::seconds>(std::chrono::high_resolution_clock::now() - this->then) > std::chrono::seconds(1)) {
-        this->currFps = ImGui::GetIO().Framerate / 1000.f;
-        this->then = std::chrono::high_resolution_clock::now();
+    if(std::chrono::duration_cast<std::chrono::seconds>(std::chrono::high_resolution_clock::now() - then) > std::chrono::seconds(1)) {
+        currFps = ImGui::GetIO().Framerate / 1000.f;
+        then = std::chrono::high_resolution_clock::now();
     };
 
     auto instance = Minecraft::getClientInstance();
@@ -20,7 +20,7 @@ auto TestModule::onRender(void) -> void {
     auto displaySize = guiData->screenRes1;
     auto fontSize = 10 * guiData->uiScale;
     
-    auto text = std::string("Infernus V3 | FPS: " + std::to_string((int)this->currFps));
+    auto text = std::string("Infernus V3 | FPS: " + std::to_string((int)currFps));
     auto calcPos = RenderUtils::getTextSize(text, fontSize);
     auto textPos = ImVec2(2.f, displaySize.y - calcPos.y);
 
@@ -81,6 +81,12 @@ auto TestModule::onRenderOptions(void) -> void {
         if(ImGui::MenuItem("Creative")) {
 
             player->setPlayerGameType(1);
+
+        };
+
+        if(ImGui::MenuItem("Test")) {
+
+            //
 
         };
         
