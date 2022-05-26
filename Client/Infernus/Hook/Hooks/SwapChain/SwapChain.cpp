@@ -27,10 +27,11 @@ ID3D12CommandAllocator* allocator = nullptr;
 auto initFonts() -> void {
     auto& io = ImGui::GetIO();
 
-    auto droidSans = io.Fonts->AddFontFromMemoryCompressedTTF(DroidSans_compressed_data, DroidSans_compressed_size, 16.f);
-    
-    //auto mcFont = io.Fonts->AddFontFromMemoryCompressedTTF(Minecraft_compressed_data, DroidSans_compressed_size, 16.f);
-}
+    scMgr->fonts["DroidSans"] = io.Fonts->AddFontFromMemoryCompressedTTF(DroidSans_compressed_data, DroidSans_compressed_size, 16.f);
+    scMgr->fonts["Minecraft"] = io.Fonts->AddFontFromMemoryCompressedTTF(Minecraft_compressed_data, DroidSans_compressed_size, 16.f);
+
+    io.FontDefault = scMgr->fonts["DroidSans"];
+};
 
 auto hookPresentD3D12(IDXGISwapChain3* ppSwapChain, UINT syncInterval, UINT flags) -> HRESULT {
 
