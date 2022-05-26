@@ -4,10 +4,15 @@
 #include "../../../Manager/Manager.h"
 
 auto TabGui::onRender(void) -> void {
-    
+
     auto instance = Minecraft::getClientInstance();
     auto guiData = (instance != nullptr ? instance->getGuiData() : nullptr);
     auto mcGame = (instance != nullptr ? instance->getMinecraftGame() : nullptr);
+
+    auto player = Minecraft::getLocalPlayer();
+
+    if(player != nullptr && mcGame != nullptr && !mcGame->canUseKeys)
+        return;
 
     if(guiData == nullptr || mcGame == nullptr)
         return;
@@ -81,7 +86,7 @@ auto TabGui::onKey(uint64_t key, bool isDown, bool* cancel) -> void {
 
     auto instance = Minecraft::getClientInstance();
     auto mcGame = (instance != nullptr ? instance->getMinecraftGame() : nullptr);
-    
+
     auto player = Minecraft::getLocalPlayer();
 
     if(player != nullptr && mcGame != nullptr && !mcGame->canUseKeys)
