@@ -48,7 +48,7 @@ auto TabGui::onRender(void) -> void {
 
         if(selectedCat && catIndex == I) {
             auto selectedCursor = RenderUtils::getTextSize(">", fontSize);
-            RenderUtils::drawText(nullptr, ImVec2(catRect.z - selectedCursor.x, (catRect.y + selectedCursor.y) + (I * fontSize)), "<", fontSize, currColour);
+            RenderUtils::drawText(nullptr, ImVec2(catRect.z - selectedCursor.x, (catRect.y + selectedCursor.y) + (I * fontSize)), ">", fontSize, currColour);
         };
         
         I++;
