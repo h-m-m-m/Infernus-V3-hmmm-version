@@ -43,7 +43,14 @@ auto TabGui::onRender(void) -> void {
 
     auto I = 0;
     for(auto cat : mgr->categories) {
-        RenderUtils::drawText(nullptr, ImVec2(startPos.x + 2.f, (startPos.y + logoTextSize.y) + (I * fontSize)), selectedCat && catIndex == I ? cat->name + " >" : cat->name, fontSize, selectedCat && catIndex == I ? ImColor(66.f, 245.f, 138.f) : ImColor(245.f, 118.f, 70.f));
+        auto currColour = selectedCat && catIndex == I ? ImColor(66.f, 245.f, 138.f) : ImColor(245.f, 118.f, 70.f);
+        RenderUtils::drawText(nullptr, ImVec2(startPos.x + 2.f, (startPos.y + logoTextSize.y) + (I * fontSize)), cat->name, fontSize, currColour);
+
+        if(selectedCat && catIndex == I) {
+            auto selectedCursor = RenderUtils::getTextSize(">", fontSize);
+            RenderUtils::drawText(nullptr, ImVec2(catRect.z - selectedCursor.x, (catRect.y + selectedCursor.y) + (I * fontSize)), "<", fontSize, currColour);
+        };
+        
         I++;
     };
 
@@ -75,7 +82,14 @@ auto TabGui::onRender(void) -> void {
         RenderUtils::drawText(nullptr, ImVec2(modRect.x + 8.f, modRect.y), category->name, fontSize, ImColor(255.f, 110.f, 30.f));
         
         for(auto mod : modules) {
-            RenderUtils::drawText(nullptr, ImVec2(modRect.x + 8.f, (modRect.y + categoryNameSize.y) + (I * fontSize)), selectedMod && modIndex == I ? mod->name + " <" : mod->name, fontSize, mod->isEnabled ? ImColor(66.f, 245.f, 138.f) : ImColor(245.f, 118.f, 70.f));
+            auto currColour = mod->isEnabled ? ImColor(66.f, 245.f, 138.f) : ImColor(245.f, 118.f, 70.f);
+            RenderUtils::drawText(nullptr, ImVec2(modRect.x + 8.f, (modRect.y + categoryNameSize.y) + (I * fontSize)), mod->name, fontSize, currColour);
+            
+            if(selectedMod && modIndex == I) {
+                auto selectedCursor = RenderUtils::getTextSize("<", fontSize);
+                RenderUtils::drawText(nullptr, ImVec2(modRect.z - selectedCursor.x, (modRect.y + selectedCursor.y) + (I * fontSize)), "<", fontSize, currColour);
+            };
+
             I++;
         };
     };
