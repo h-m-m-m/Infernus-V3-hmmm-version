@@ -11,10 +11,10 @@ auto TabGui::onRender(void) -> void {
 
     auto player = Minecraft::getLocalPlayer();
 
-    if(player != nullptr && mcGame != nullptr && !mcGame->canUseKeys)
-        return;
-
     if(guiData == nullptr || mcGame == nullptr)
+        return;
+    
+    if(player != nullptr && mcGame != nullptr && !mcGame->canUseKeys)
         return;
     
     auto mgr = this->category->manager;
