@@ -13,6 +13,8 @@ public:
 public:
     std::map<uint64_t, bool> keyMap;
 public:
+    std::map<std::string, ImFont*> fonts;
+public:
     bool isRunning = true;
 public:
     Manager(Client*);
