@@ -1,1 +1,2 @@
+add_subdirectory(Visuals)
 add_subdirectory(Other)
