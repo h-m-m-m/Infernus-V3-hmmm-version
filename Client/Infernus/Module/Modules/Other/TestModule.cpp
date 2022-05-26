@@ -28,6 +28,12 @@ auto TestModule::onRender(void) -> void {
 
 };
 
+auto TestModule::onRenderOptions(void) -> void {
+
+    ImGui::Text("Test");
+
+};
+
 auto TestModule::onGameMode(GameMode* GM) -> void {
     //
-}
+};
