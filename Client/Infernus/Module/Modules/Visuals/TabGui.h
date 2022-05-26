@@ -12,9 +12,13 @@ public:
 public:
     virtual auto onRender(void) -> void override;
     virtual auto onKey(uint64_t, bool, bool*) -> void override;
+public:
+    auto updateAlpha(void) -> void;
 private:
     int catIndex = 0, modIndex = 0;
     bool selectedCat = false, selectedMod = false;
+private:
+    float alpha = 0.f;
 };
 
 #endif /* CLIENT_INFERNUS_MODULE_MODULES_VISUALS_TABGUI */
