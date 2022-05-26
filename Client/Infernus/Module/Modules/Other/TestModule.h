@@ -10,6 +10,8 @@ public:
     };
 public:
     virtual auto onRender(void) -> void override;
+    virtual auto onRenderOptions(void) -> void override;
+public:
     virtual auto onGameMode(GameMode*) -> void override;
 private:
     std::chrono::time_point<std::chrono::high_resolution_clock> then = std::chrono::high_resolution_clock::now();
