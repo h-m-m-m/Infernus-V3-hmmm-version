@@ -146,7 +146,7 @@ auto TabGui::onKey(uint64_t key, bool isDown, bool* cancel) -> void {
             catIndex--;
         } else if(selectedMod) {
             if(modIndex <= 0)
-                modIndex = categories.size();
+                modIndex = category->modules.size();
             
             modIndex--;
         };
