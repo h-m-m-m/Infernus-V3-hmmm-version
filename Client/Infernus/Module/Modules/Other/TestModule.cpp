@@ -27,3 +27,7 @@ auto TestModule::onRender(void) -> void {
     RenderUtils::drawText(nullptr, textPos, text, fontSize, ImColor(232.f, 99.f, 32.f));
 
 };
+
+auto TestModule::onGameMode(GameMode* GM) -> void {
+    //
+}
