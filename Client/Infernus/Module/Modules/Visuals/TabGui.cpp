@@ -78,7 +78,7 @@ auto TabGui::onRender(void) -> void {
         RenderUtils::drawText(nullptr, ImVec2(modRect.x + 8.f, modRect.y), category->name, fontSize, ImColor(255.f, 110.f, 30.f, alpha));
         
         for(auto mod : modules) {
-            auto currColour = mod->isEnabled ? ImColor(66.f, 245.f, 138.f) : ImColor(245.f, 118.f, 70.f, alpha);
+            auto currColour = mod->isEnabled ? ImColor(66.f, 245.f, 138.f, alpha) : ImColor(245.f, 118.f, 70.f, alpha);
             RenderUtils::drawText(nullptr, ImVec2(modRect.x + 8.f, (modRect.y + categoryNameSize.y) + (I * fontSize)), mod->name, fontSize, currColour);
             
             if(selectedMod && modIndex == I) {
