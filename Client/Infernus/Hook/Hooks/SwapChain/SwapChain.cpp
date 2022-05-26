@@ -29,6 +29,7 @@ auto initFonts() -> void {
 
     scMgr->fonts["DroidSans"] = io.Fonts->AddFontFromMemoryCompressedTTF(DroidSans_compressed_data, DroidSans_compressed_size, 16.f);
     scMgr->fonts["Minecraft"] = io.Fonts->AddFontFromMemoryCompressedTTF(Minecraft_compressed_data, Minecraft_compressed_size, 16.f);
+    scMgr->fonts["DejaVuSerif"] = io.Fonts->AddFontFromMemoryCompressedTTF(DejaVuSerif_compressed_data, DejaVuSerif_compressed_size, 16.f);
 
     io.FontDefault = scMgr->fonts["DroidSans"];
 };
