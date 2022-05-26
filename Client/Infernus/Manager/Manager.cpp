@@ -48,6 +48,7 @@ auto Manager::initCategories(void) -> void {
 
 /* Other */
 #include "../Module/Modules/Other/TestModule.h"
+#include "../Module/Modules/Other/Uninject.h"
 
 auto Manager::initModules(void) -> void {
 
@@ -70,6 +71,7 @@ auto Manager::initModules(void) -> void {
     if(other != nullptr && other->modules.empty()) {
 
         new TestModule(other);
+		new Uninject(other);
 
     };
 
