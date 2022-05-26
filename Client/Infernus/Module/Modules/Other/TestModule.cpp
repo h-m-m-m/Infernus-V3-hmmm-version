@@ -21,9 +21,9 @@ auto TestModule::onRender(void) -> void {
     
     auto text = std::string("Infernus V3 | FPS: " + std::to_string((int)currFps));
     auto calcPos = RenderUtils::getTextSize(text, fontSize);
-    auto textPos = ImVec2(2.f, displaySize.y - calcPos.y);
+    auto textPos = ImVec2(12.f, displaySize.y - (calcPos.y + 12.f));
 
-    RenderUtils::fillRect(nullptr, ImVec4(textPos.x - 2.f, textPos.y, calcPos.x + 4.f, textPos.y + calcPos.y), ImColor(21.f, 21.f, 21.f), 1.2f);
+    RenderUtils::fillRect(nullptr, ImVec4(textPos.x - 2.f, textPos.y, calcPos.x + 10.f, textPos.y + calcPos.y), ImColor(50.f, 50.f, 50.f, .8f), 1.2f);
     RenderUtils::drawText(nullptr, textPos, text, fontSize, ImColor(232.f, 99.f, 32.f));
 
 };
