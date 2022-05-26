@@ -4,6 +4,7 @@
 #include "../../Hook.h"
 
 #include "../../../../../Includes/imgui/DroidSans.hpp"
+#include "../../../../../Includes/imgui/Minecraft.hpp"
 
 class SwapChain_Hook : public Hook {
 public:
