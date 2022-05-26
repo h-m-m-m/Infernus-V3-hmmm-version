@@ -28,7 +28,7 @@ auto initFonts() -> void {
     auto& io = ImGui::GetIO();
 
     scMgr->fonts["DroidSans"] = io.Fonts->AddFontFromMemoryCompressedTTF(DroidSans_compressed_data, DroidSans_compressed_size, 16.f);
-    scMgr->fonts["Minecraft"] = io.Fonts->AddFontFromMemoryCompressedTTF(Minecraft_compressed_data, DroidSans_compressed_size, 16.f);
+    scMgr->fonts["Minecraft"] = io.Fonts->AddFontFromMemoryCompressedTTF(Minecraft_compressed_data, Minecraft_compressed_size, 16.f);
 
     io.FontDefault = scMgr->fonts["DroidSans"];
 };
