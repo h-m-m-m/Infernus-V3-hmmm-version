@@ -24,13 +24,12 @@ ID3D12DescriptorHeap* d3d12DescriptorHeapBackBuffers = nullptr;
 ID3D12GraphicsCommandList* d3d12CommandList = nullptr;
 ID3D12CommandAllocator* allocator = nullptr;
 
-
 auto initFonts() -> void {
     auto& io = ImGui::GetIO();
 
-    ImFont* droidSans = nullptr;
-
-    droidSans = io.Fonts->AddFontFromMemoryCompressedTTF(DroidSans_compressed_data, DroidSans_compressed_size, 16.f);
+    auto droidSans = io.Fonts->AddFontFromMemoryCompressedTTF(DroidSans_compressed_data, DroidSans_compressed_size, 16.f);
+    
+    //auto mcFont = io.Fonts->AddFontFromMemoryCompressedTTF(Minecraft_compressed_data, DroidSans_compressed_size, 16.f);
 }
 
 auto hookPresentD3D12(IDXGISwapChain3* ppSwapChain, UINT syncInterval, UINT flags) -> HRESULT {
