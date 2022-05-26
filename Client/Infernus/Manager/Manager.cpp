@@ -45,6 +45,7 @@ auto Manager::initCategories(void) -> void {
 
 /* Visuals */
 #include "../Module/Modules/Visuals/TabGui.h"
+#include "../Module/Modules/Visuals/ClickGui.h"
 
 /* Other */
 #include "../Module/Modules/Other/TestModule.h"
@@ -65,6 +66,7 @@ auto Manager::initModules(void) -> void {
 	if(visuals != nullptr && visuals->modules.empty()) {
 
 		new TabGui(visuals);
+		new ClickGui(visuals);
 
 	};
 
