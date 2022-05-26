@@ -31,13 +31,48 @@ auto TabGui::onRender(void) -> void {
         catYOff += currWidth.y;
     };
 
-    RenderUtils::fillRect(nullptr, ImVec4(startPos.x - 8.f, startPos.y - 2.f, startPos.x + (catWidth + 8.f), startPos.y + (catYOff + 2.f)), ImColor(50.f, 50.f, 50.f, .8f), 0.f);
+    auto catRect = ImVec4(startPos.x - 8.f, startPos.y - 2.f, startPos.x + (catWidth + 8.f), startPos.y + (catYOff + 2.f));
+    
+    RenderUtils::fillRect(nullptr, catRect, ImColor(50.f, 50.f, 50.f, .8f), 0.f);
     RenderUtils::drawText(nullptr, startPos, client->name, fontSize, ImColor(255.f, 110.f, 30.f));
 
     auto I = 0;
     for(auto cat : mgr->categories) {
         RenderUtils::drawText(nullptr, ImVec2(startPos.x + 2.f, (startPos.y + logoTextSize.y) + (I * fontSize)), selectedCat && catIndex == I ? cat->name + " >" : cat->name, fontSize, selectedCat && catIndex == I ? ImColor(66.f, 245.f, 138.f) : ImColor(245.f, 118.f, 70.f));
         I++;
+    };
+
+    if(selectedCat) {
+        auto category = mgr->categories.at(catIndex);
+        auto modules = category->modules;
+        
+        auto categoryNameSize = RenderUtils::getTextSize(category->name, fontSize);
+
+        catWidth = categoryNameSize.x;
+        catYOff = categoryNameSize.y;
+        I = 0;
+
+        if(modules.empty())
+            return;
+
+        for(auto mod : modules) {
+            auto currWidth = RenderUtils::getTextSize(mod->name + " <", fontSize);
+
+            if(currWidth.x > catWidth)
+                catWidth = currWidth.x;
+        
+            catYOff += currWidth.y;
+        };
+
+        auto modRect = ImVec4(catRect.z + 4.f, catRect.y, catRect.z + (catWidth + 14.f), catRect.y + (catYOff + 2.f));
+
+        RenderUtils::fillRect(nullptr, modRect, ImColor(50.f, 50.f, 50.f, 8.f), 0.f);
+        RenderUtils::drawText(nullptr, ImVec2(modRect.x + 8.f, modRect.y), category->name, fontSize, ImColor(255.f, 110.f, 30.f));
+        
+        for(auto mod : modules) {
+            RenderUtils::drawText(nullptr, ImVec2(modRect.x + 8.f, (modRect.y + categoryNameSize.y) + (I * fontSize)), selectedMod && modIndex == I ? mod->name + " <" : mod->name, fontSize, mod->isEnabled ? ImColor(66.f, 245.f, 138.f) : ImColor(245.f, 118.f, 70.f));
+            I++;
+        };
     };
 
 };
@@ -61,14 +96,21 @@ auto TabGui::onKey(uint64_t key, bool isDown, bool* cancel) -> void {
             if(!selectedMod) {
                 selectedMod = true;
             } else {
-                /* Toggle selected Module */
+                if(category->modules.empty())
+                    return;
+                auto mod = category->modules.at(modIndex);
+
+                if(mod != nullptr)
+                    mod->isEnabled = !mod->isEnabled;
             };
         };
     } else if(key == VK_LEFT) {
         if(selectedMod) {
             selectedMod = false;
+            modIndex = 0;
         } else if(selectedCat) {
             selectedCat = false;
+            catIndex = 0;
         };
     } else if(key == VK_DOWN) {
         if(selectedCat && !selectedMod) {

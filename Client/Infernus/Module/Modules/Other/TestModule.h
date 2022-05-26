@@ -6,7 +6,6 @@
 class TestModule : public Module {
 public:
     TestModule(Category* c) : Module(c, "Test Module") {
-        this->setKey(VK_TAB);
         this->setState(true);
     };
 public:
