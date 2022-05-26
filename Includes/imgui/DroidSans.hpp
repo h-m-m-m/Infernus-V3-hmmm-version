@@ -1,3 +1,6 @@
+#ifndef INCLUDES_IMGUI_DROIDSANS
+#define INCLUDES_IMGUI_DROIDSANS
+
 static const unsigned int DroidSans_compressed_size = 134345;
 static const unsigned int DroidSans_compressed_data[134348/4] =
 {
@@ -2802,3 +2805,4 @@ static const unsigned int DroidSans_compressed_data[134348/4] =
     0x016a036a, 0x036c03e7, 0x03e8016c, 0x0174036e, 0xfba818e9, 0x001c2208, 0xfba8181e, 0x00002410, 0x05000000, 0x5d0350fa, 0x00000011, 
 };
 
+#endif /* INCLUDES_IMGUI_DROIDSANS */
