@@ -23,7 +23,6 @@ public:
     static auto setVersion(void) -> void;
 public:
     static auto getClientInstance(void) -> ClientInstance*;
-    static auto getLocalPlayer(void) -> Player*;
 };
 
 #endif /* CLIENT_SDK_MINECRAFT */
