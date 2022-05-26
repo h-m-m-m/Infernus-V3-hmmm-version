@@ -25,6 +25,14 @@ ID3D12GraphicsCommandList* d3d12CommandList = nullptr;
 ID3D12CommandAllocator* allocator = nullptr;
 
 
+auto initFonts() -> void {
+    auto& io = ImGui::GetIO();
+
+    ImFont* droidSans = nullptr;
+
+    droidSans = io.Fonts->AddFontFromMemoryCompressedTTF(DroidSans_compressed_data, DroidSans_compressed_size, 35);
+}
+
 auto hookPresentD3D12(IDXGISwapChain3* ppSwapChain, UINT syncInterval, UINT flags) -> HRESULT {
 
     RenderUtils::deviceType = ID3D_Device_Type::INVALID_DEVICE_TYPE;
@@ -65,6 +73,7 @@ auto hookPresentD3D12(IDXGISwapChain3* ppSwapChain, UINT syncInterval, UINT flag
 
         if(!initContext) {
             ImGui::CreateContext();
+            initFonts();
             initContext = true;
         };
         
@@ -101,9 +110,10 @@ auto hookPresentD3D12(IDXGISwapChain3* ppSwapChain, UINT syncInterval, UINT flag
         
     } else if(RenderUtils::deviceType == ID3D_Device_Type::D3D12) {
         
-        if(!initContext)
+        if(!initContext){
             ImGui::CreateContext();
-            
+            initFonts();
+        }
         DXGI_SWAP_CHAIN_DESC sdesc;
         ppSwapChain->GetDesc(&sdesc);
         sdesc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;

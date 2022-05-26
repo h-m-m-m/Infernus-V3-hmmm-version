@@ -3,6 +3,8 @@
 
 #include "../../Hook.h"
 
+#include "../../../../../Includes/imgui/DroidSans.hpp"
+
 class SwapChain_Hook : public Hook {
 public:
     SwapChain_Hook(Manager* mgr) : Hook(mgr) {
