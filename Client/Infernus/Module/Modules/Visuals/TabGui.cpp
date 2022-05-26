@@ -5,16 +5,12 @@
 
 auto TabGui::onRender(void) -> void {
 
+    this->updateAlpha();
+
     auto instance = Minecraft::getClientInstance();
     auto guiData = (instance != nullptr ? instance->getGuiData() : nullptr);
-    auto mcGame = (instance != nullptr ? instance->getMinecraftGame() : nullptr);
 
-    auto player = Minecraft::getLocalPlayer();
-
-    if(guiData == nullptr || mcGame == nullptr)
-        return;
-    
-    if(player != nullptr && mcGame != nullptr && !mcGame->canUseKeys)
+    if(guiData == nullptr)
         return;
     
     auto mgr = this->category->manager;
@@ -38,12 +34,12 @@ auto TabGui::onRender(void) -> void {
 
     auto catRect = ImVec4(startPos.x - 8.f, startPos.y - 2.f, startPos.x + (catWidth + 8.f), startPos.y + (catYOff + 2.f));
     
-    RenderUtils::fillRect(nullptr, catRect, ImColor(50.f, 50.f, 50.f, .8f), 0.f);
-    RenderUtils::drawText(nullptr, startPos, client->name, fontSize, ImColor(255.f, 110.f, 30.f));
+    RenderUtils::fillRect(nullptr, catRect, ImColor(50.f, 50.f, 50.f, alpha - 0.2f), 0.f);
+    RenderUtils::drawText(nullptr, startPos, client->name, fontSize, ImColor(255.f, 110.f, 30.f, alpha));
 
     auto I = 0;
     for(auto cat : mgr->categories) {
-        auto currColour = selectedCat && catIndex == I ? ImColor(66.f, 245.f, 138.f) : ImColor(245.f, 118.f, 70.f);
+        auto currColour = selectedCat && catIndex == I ? ImColor(66.f, 245.f, 138.f, alpha) : ImColor(245.f, 118.f, 70.f, alpha);
         RenderUtils::drawText(nullptr, ImVec2(startPos.x + 2.f, (startPos.y + logoTextSize.y) + (I * fontSize)), cat->name, fontSize, currColour);
 
         if(selectedCat && catIndex == I) {
@@ -78,11 +74,11 @@ auto TabGui::onRender(void) -> void {
 
         auto modRect = ImVec4(catRect.z + 4.f, catRect.y, catRect.z + (catWidth + 14.f), catRect.y + (catYOff + 2.f));
 
-        RenderUtils::fillRect(nullptr, modRect, ImColor(50.f, 50.f, 50.f, .8f), 0.f);
-        RenderUtils::drawText(nullptr, ImVec2(modRect.x + 8.f, modRect.y), category->name, fontSize, ImColor(255.f, 110.f, 30.f));
+        RenderUtils::fillRect(nullptr, modRect, ImColor(50.f, 50.f, 50.f, alpha - 0.2f), 0.f);
+        RenderUtils::drawText(nullptr, ImVec2(modRect.x + 8.f, modRect.y), category->name, fontSize, ImColor(255.f, 110.f, 30.f, alpha));
         
         for(auto mod : modules) {
-            auto currColour = mod->isEnabled ? ImColor(66.f, 245.f, 138.f) : ImColor(245.f, 118.f, 70.f);
+            auto currColour = mod->isEnabled ? ImColor(66.f, 245.f, 138.f) : ImColor(245.f, 118.f, 70.f, alpha);
             RenderUtils::drawText(nullptr, ImVec2(modRect.x + 8.f, (modRect.y + categoryNameSize.y) + (I * fontSize)), mod->name, fontSize, currColour);
             
             if(selectedMod && modIndex == I) {
@@ -99,9 +95,8 @@ auto TabGui::onRender(void) -> void {
 auto TabGui::onKey(uint64_t key, bool isDown, bool* cancel) -> void {
 
     auto instance = Minecraft::getClientInstance();
+    auto player = (instance != nullptr ? instance->getLocalPlayer() : nullptr);
     auto mcGame = (instance != nullptr ? instance->getMinecraftGame() : nullptr);
-
-    auto player = Minecraft::getLocalPlayer();
 
     if(player != nullptr && mcGame != nullptr && !mcGame->canUseKeys)
         return;
@@ -166,4 +161,27 @@ auto TabGui::onKey(uint64_t key, bool isDown, bool* cancel) -> void {
         };
     };
 
+};
+
+auto TabGui::updateAlpha(void) -> void {
+
+    auto reachOff = [&](float* value, float target, float modifier) {
+        if(*value < target)
+            *value += modifier;
+        else
+            *value -= modifier;
+    };
+
+    auto instance = Minecraft::getClientInstance();
+    auto player = (instance != nullptr ? instance->getLocalPlayer() : nullptr);
+    auto mcGame = (instance != nullptr ? instance->getMinecraftGame() : nullptr);
+    auto modifier = 0.04f;
+    
+    if(mcGame == nullptr || player == nullptr)
+        return reachOff(&alpha, 1.f, modifier);
+    
+    if(mcGame->canUseKeys)
+        return reachOff(&alpha, 1.f, modifier);
+    else
+        return reachOff(&alpha, .0f, modifier);
 };
