@@ -66,7 +66,7 @@ auto TabGui::onRender(void) -> void {
 
         auto modRect = ImVec4(catRect.z + 4.f, catRect.y, catRect.z + (catWidth + 14.f), catRect.y + (catYOff + 2.f));
 
-        RenderUtils::fillRect(nullptr, modRect, ImColor(50.f, 50.f, 50.f, 8.f), 0.f);
+        RenderUtils::fillRect(nullptr, modRect, ImColor(50.f, 50.f, 50.f, .8f), 0.f);
         RenderUtils::drawText(nullptr, ImVec2(modRect.x + 8.f, modRect.y), category->name, fontSize, ImColor(255.f, 110.f, 30.f));
         
         for(auto mod : modules) {
