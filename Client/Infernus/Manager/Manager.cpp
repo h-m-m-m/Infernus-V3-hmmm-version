@@ -23,9 +23,9 @@ auto Manager::initHooks(void) -> void {
     
     new SwapChain_Hook(this);
     new GameMode_Hook(this);
-	new Entity_Hooks(this);
+    new Entity_Hooks(this);
     new Mouse_Hook(this);
-	new Key_Hook(this);
+    new Key_Hook(this);
 
 };
 
@@ -44,6 +44,7 @@ auto Manager::initCategories(void) -> void {
     this->initModules();
 
 };
+
 /* Combat */
 #include "../Module/Modules/Combat/Killaura.h"
 
@@ -67,31 +68,31 @@ auto Manager::initModules(void) -> void {
     
     /* Combat */
 
-	if(combat != nullptr && combat->modules.empty()) {
+    if(combat != nullptr && combat->modules.empty()) {
 
-		new Killaura(combat);
+        new Killaura(combat);
 
-	};
+    };
 	
-	/* Visuals */
+    /* Visuals */
 
-	if(visuals != nullptr && visuals->modules.empty()) {
+    if(visuals != nullptr && visuals->modules.empty()) {
 
-		new TabGui(visuals);
-		new ClickGui(visuals);
+	new TabGui(visuals);
+	New ClickGui(visuals);
 
-	};
+    };
 
-	/* Other */
+    /* Other */
 
     if(other != nullptr && other->modules.empty()) {
 
         new TestModule(other);
-		new Uninject(other);
+	new Uninject(other);
 
     };
 
-	this->baseTick();
+    This->baseTick();
 
 };
 
