@@ -83,3 +83,138 @@ auto Actor::canAttack(Actor* e, bool pB) -> bool {
 
     return (_CanAttack != nullptr ? _CanAttack(this, e, pB) : false);
 };
+
+auto Actor::getEntityTypeId(void) -> uint8_t {
+    auto res = (uint8_t)NULL;
+
+    switch(Minecraft::getVersion().second) {
+        case MC_VER::v1_18_31:
+            res = *(uint8_t*)((uintptr_t)(this) + 0x3D4);
+        break;
+    };
+
+    return res;
+};
+
+auto Actor::isMob(void) -> bool {
+    auto currType = this->getEntityTypeId();
+
+    switch(currType) {
+        case EntityType::Dropped_Item:
+            return false;
+        break;
+        case EntityType::Experience_Orb:
+            return false;
+        break;
+        case EntityType::TNT:
+            return false;
+        break;
+        case EntityType::Falling_Block:
+            return false;
+        break;
+        case EntityType::Moving_Block:
+            return false;
+        break;
+        case EntityType::Armor_Stand:
+            return false;
+        break;
+        case EntityType::Bottle_Of_Enchanting:
+            return false;
+        break;
+        case EntityType::Eye_Of_Ender:
+            return false;
+        break;
+        case EntityType::Ender_Crystal:
+            return false;
+        break;
+        case EntityType::Fireworks_Rocket:
+            return false;
+        break;
+        case EntityType::Thrown_Trident:
+            return false;
+        break;
+        case EntityType::Shulker_Bullet:
+            return false;
+        break;
+        case EntityType::Fishing_Hook:
+            return false;
+        break;
+        case EntityType::Dragon_Fireball:
+            return false;
+        break;
+        case EntityType::Arrow:
+            return false;
+        break;
+        case EntityType::Snowball:
+            return false;
+        break;
+        case EntityType::Egg:
+            return false;
+        break;
+        case EntityType::Painting:
+            return false;
+        break;
+        case EntityType::Minecart:
+            return false;
+        break;
+        case EntityType::Fireball:
+            return false;
+        break;
+        case EntityType::Splash_Potion:
+            return false;
+        break;
+        case EntityType::Ender_Pearl:
+            return false;
+        break;
+        case EntityType::Leash_Knot:
+            return false;
+        break;
+        case EntityType::Wither_Skull:
+            return false;
+        break;
+        case EntityType::Boat:
+            return false;
+        break;
+        case EntityType::Wither_Skull_Dangerous:
+            return false;
+        break;
+        case EntityType::Lightning_Bolt:
+            return false;
+        break;
+        case EntityType::Small_Fireball:
+            return false;
+        break;
+        case EntityType::Area_Effect_Cloud:
+            return false;
+        break;
+        case EntityType::Hopper_Minecart:
+            return false;
+        break;
+        case EntityType::TNT_Minecart:
+            return false;
+        break;
+        case EntityType::Chest_Minecart:
+            return false;
+        break;
+        case EntityType::Command_Block_Minecart:
+            return false;
+        break;
+        case EntityType::Lingering_Potion:
+            return false;
+        break;
+        case EntityType::Llama_Spit:
+            return false;
+        break;
+        case EntityType::Evocation_Fang:
+            return false;
+        break;
+        case EntityType::Ice_Bomb:
+            return false;
+        break;
+        case EntityType::Balloon:
+            return false;
+        break;
+    };
+    
+    return true;
+};
