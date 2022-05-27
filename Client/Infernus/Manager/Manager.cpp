@@ -9,6 +9,7 @@ Manager::Manager(Client* client) {
 
 #include "../Hook/Hooks/SwapChain/SwapChain.h"
 #include "../Hook/Hooks/GameMode/GameMode.h"
+#include "../Hook/Hooks/Entity/Entity.h"
 #include "../Hook/Hooks/Mouse/Mouse.h"
 #include "../Hook/Hooks/Key/Key.h"
 
@@ -22,6 +23,7 @@ auto Manager::initHooks(void) -> void {
     
     new SwapChain_Hook(this);
     new GameMode_Hook(this);
+	new Entity_Hooks(this);
     new Mouse_Hook(this);
 	new Key_Hook(this);
 
@@ -157,4 +159,20 @@ auto Manager::setImGuiStyles(void) -> void {
 	style->Colors[ImGuiCol_PlotHistogramHovered] = ImVec4(0.25f, 1.00f, 0.00f, 1.00f);
 	style->Colors[ImGuiCol_TextSelectedBg] = ImVec4(0.25f, 1.00f, 0.00f, 0.43f);
 	
+};
+
+auto Manager::cleanEntityMap(void) -> void {
+	auto instance = Minecraft::getClientInstance();
+	auto player = (instance != nullptr ? instance->getLocalPlayer() : nullptr);
+	auto level = (player != nullptr ? player->getLevel() : nullptr);
+
+	if(player == nullptr || level == nullptr)
+		return this->entityMap.clear();
+	
+	for(auto [runtimeId, entity] : this->entityMap) {
+
+		if(level->fetchEntity(runtimeId, false) == nullptr)
+			entityMap.erase(runtimeId);
+
+	};
 };
