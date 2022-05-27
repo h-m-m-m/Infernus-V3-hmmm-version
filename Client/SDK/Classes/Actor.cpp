@@ -88,10 +88,12 @@ auto Actor::isJumping(void) -> bool {
     using IsJumping = bool (__thiscall*)(Actor*);
     static auto _IsJumping = (IsJumping)nullptr;
 
-    switch(Minecraft::getVersion().second) {
-        case MC_VER::v1_18_31:
-            _IsJumping = (IsJumping)(this->VTable[128]);
-        break;
+    if(_IsJumping == nullptr) {
+        switch(Minecraft::getVersion().second) {
+            case MC_VER::v1_18_31:
+                _IsJumping = (IsJumping)(this->VTable[128]);
+            break;
+        };
     };
 
     return (_IsJumping != nullptr ? IsJumping(this) : false);
