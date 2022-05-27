@@ -79,7 +79,7 @@ auto Manager::initModules(void) -> void {
     if(visuals != nullptr && visuals->modules.empty()) {
 
 	new TabGui(visuals);
-	New ClickGui(visuals);
+	new ClickGui(visuals);
 
     };
 
