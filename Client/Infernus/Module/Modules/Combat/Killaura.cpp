@@ -4,6 +4,11 @@
 #include "../../../Manager/Manager.h"
 
 auto Killaura::onGameMode(GameMode* GM) -> void {
+    if(msDelay > 0 && std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - savedTime) <= std::chrono::milliseconds((int)msDelay))
+        return;
+    
+    savedTime = std::chrono::high_resolution_clock::now();
+    
     auto player = GM->player;
     auto myPos = player->getPos();
 
@@ -34,10 +39,14 @@ auto Killaura::onGameMode(GameMode* GM) -> void {
     if(distances.empty())
         return;
     
+    auto I = 0;
     for(auto [runtimeId, entity] : mgr->entityMap) {
 
         if(runtimeId == player->getRuntimeId() || !entity->isAlive() || !entity->isMob() || !player->canAttack(entity, false))
             continue;
+        
+        if(I >= 2)
+            break;
         
         auto entPos = entity->getPos();
 
@@ -50,6 +59,7 @@ auto Killaura::onGameMode(GameMode* GM) -> void {
         if(dist == distances[0] || (distances.size() > 1 ? dist == distances[0] : dist == distances[1]) || (distances.size() > 2 ? dist == distances[1] : dist == distances[2])) {
             GM->attack(entity);
             player->swing();
+            I++;
         };
         
     };
