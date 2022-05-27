@@ -12,6 +12,7 @@ public:
     auto getRuntimeId(void) -> uint64_t;
     auto getPos(void) -> Vec3<float>;
     auto outOfWorld(void) -> bool;
+    auto isAlive(void) -> bool;
     auto canAttack(Actor*, bool) -> bool;
 };
 
