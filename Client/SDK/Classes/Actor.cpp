@@ -84,6 +84,34 @@ auto Actor::canAttack(Actor* e, bool pB) -> bool {
     return (_CanAttack != nullptr ? _CanAttack(this, e, pB) : false);
 };
 
+auto Actor::isJumping(void) -> bool {
+    using IsJumping = bool (__thiscall*)(Actor*);
+    static auto _IsJumping = (IsJumping)nullptr;
+
+    switch(Minecraft::getVersion().second) {
+        case MC_VER::v1_18_31:
+            _IsJumping = (IsJumping)(this->VTable[128]);
+        break;
+    };
+
+    return (_IsJumping != nullptr ? IsJumping(this) : false);
+};
+
+auto Actor::consumeTotem(void) -> bool {
+    using ConsumeTotem = bool (__thiscall*)(Actor*);
+    static auto _ConsumeTotem = (ConsumeTotem)nullptr;
+
+    if(_ConsumeTotem == nullptr) {
+        switch(Minecraft::getVersion().second) {
+            case MC_VER::v1_18_31:
+                _ConsumeTotem = (ConsumeTotem)(this->VTable[164]);
+            break;
+        };
+    };
+
+    return (_ConsumeTotem != nullptr ? _ConsumeTotem(this) : false);
+};
+
 auto Actor::getEntityTypeId(void) -> uint8_t {
     auto res = (uint8_t)NULL;
 
