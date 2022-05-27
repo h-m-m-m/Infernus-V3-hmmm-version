@@ -58,41 +58,41 @@ auto Manager::initCategories(void) -> void {
 
 auto Manager::initModules(void) -> void {
 
-    auto combat = this->getCategory("Combat");
-    auto movement = this->getCategory("Movement");
-    auto player = this->getCategory("Player");
-    auto visuals = this->getCategory("Visuals");
-    auto world = this->getCategory("World");
-    auto other = this->getCategory("Other");
+	auto combat = this->getCategory("Combat");
+	auto movement = this->getCategory("Movement");
+	auto player = this->getCategory("Player");
+	auto visuals = this->getCategory("Visuals");
+	auto world = this->getCategory("World");
+	auto other = this->getCategory("Other");
 
-    
-    /* Combat */
 
-    if(combat != nullptr && combat->modules.empty()) {
+	/* Combat */
 
-        new Killaura(combat);
+	if(combat != nullptr && combat->modules.empty()) {
 
-    };
-	
-    /* Visuals */
+		new Killaura(combat);
 
-    if(visuals != nullptr && visuals->modules.empty()) {
+	};
 
-	new TabGui(visuals);
-	new ClickGui(visuals);
+	/* Visuals */
 
-    };
+	if(visuals != nullptr && visuals->modules.empty()) {
 
-    /* Other */
+		new TabGui(visuals);
+		new ClickGui(visuals);
 
-    if(other != nullptr && other->modules.empty()) {
+	};
 
-        new TestModule(other);
-	new Uninject(other);
+	/* Other */
 
-    };
+	if(other != nullptr && other->modules.empty()) {
 
-    This->baseTick();
+		new TestModule(other);
+		new Uninject(other);
+
+	};
+
+	This->baseTick();
 
 };
 
