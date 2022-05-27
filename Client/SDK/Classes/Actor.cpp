@@ -96,6 +96,22 @@ auto Actor::getEntityTypeId(void) -> uint8_t {
     return res;
 };
 
+auto Actor::swing(void) -> void {
+    using Swing = void (__thiscall*)(Actor*);
+    static auto _Swing = (Swing)nullptr;
+
+    if(_Swing == nullptr) {
+        switch(Minecraft::getVersion().second) {
+            case MC_VER::v1_18_31:
+                _Swing = (Swing)(this->VTable[218]);
+            break;
+        };
+    };
+
+    if(_Swing != nullptr)
+        _Swing(this);
+};
+
 auto Actor::isMob(void) -> bool {
     auto currType = this->getEntityTypeId();
 
