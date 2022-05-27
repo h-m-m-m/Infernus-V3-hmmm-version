@@ -96,6 +96,38 @@ auto Actor::getEntityTypeId(void) -> uint8_t {
     return res;
 };
 
+auto Actor::startSwimming(void) -> void {
+    using Swimming = void (__thiscall*)(Actor*);
+    static auto _Swimming = (Swimming)nullptr;
+
+    if(_Swimming == nullptr) {
+        switch(Minecraft::getVersion().second) {
+            case MC_VER::v1_18_31:
+                _Swimming = (Swimming)(this->VTable[200]);
+            break;
+        };
+    };
+
+    if(_Swimming != nullptr)
+        _Swimming(this);
+};
+
+auto Actor::stopSwimming(void) -> void {
+    using Swimming = void (__thiscall*)(Actor*);
+    static auto _Swimming = (Swimming)nullptr;
+
+    if(_Swimming == nullptr) {
+        switch(Minecraft::getVersion().second) {
+            case MC_VER::v1_18_31:
+                _Swimming = (Swimming)(this->VTable[201]);
+            break;
+        };
+    };
+
+    if(_Swimming != nullptr)
+        _Swimming(this);
+};
+
 auto Actor::swing(void) -> void {
     using Swing = void (__thiscall*)(Actor*);
     static auto _Swing = (Swing)nullptr;
