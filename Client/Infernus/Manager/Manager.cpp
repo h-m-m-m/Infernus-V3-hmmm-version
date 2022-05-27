@@ -44,6 +44,8 @@ auto Manager::initCategories(void) -> void {
     this->initModules();
 
 };
+/* Combat */
+#include "../Module/Modules/Combat/Killaura.h"
 
 /* Visuals */
 #include "../Module/Modules/Visuals/TabGui.h"
@@ -63,7 +65,15 @@ auto Manager::initModules(void) -> void {
     auto other = this->getCategory("Other");
 
     
-    /* Other */
+    /* Combat */
+
+	if(combat != nullptr && combat->modules.empty()) {
+
+		new Killaura(combat);
+
+	};
+	
+	/* Visuals */
 
 	if(visuals != nullptr && visuals->modules.empty()) {
 
@@ -71,6 +81,8 @@ auto Manager::initModules(void) -> void {
 		new ClickGui(visuals);
 
 	};
+
+	/* Other */
 
     if(other != nullptr && other->modules.empty()) {
 

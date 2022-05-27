@@ -26,3 +26,45 @@ auto Actor::getRuntimeId(void) -> uint64_t {
 
     return res;
 };
+
+auto Actor::getPos(void) -> Vec3<float> {
+    auto res = Vec3<float>();
+
+    switch(Minecraft::getVersion().second) {
+        case MC_VER::v1_18_31:
+            res = *(Vec3<float>*)((uintptr_t)(this) + 0x4D8);
+        break;
+    };
+
+    return res;
+};
+
+auto Actor::outOfWorld(void) -> bool {
+    using OutOfWorld = bool (__thiscall*)(Actor*);
+    static auto _OutOfWorld = (OutOfWorld)nullptr;
+
+    if(_OutOfWorld == nullptr) {
+        switch(Minecraft::getVersion().second) {
+            case MC_VER::v1_18_31:
+                _OutOfWorld = (OutOfWorld)(this->VTable[7]);
+            break;
+        };
+    };
+
+    return (_OutOfWorld != nullptr ? _OutOfWorld(this) : false);
+};
+
+auto Actor::canAttack(Actor* e, bool pB) -> bool {
+    using CanAttack = bool (__thiscall*)(Actor*, Actor*, bool);
+    static auto _CanAttack = (CanAttack)nullptr;
+
+    if(_CanAttack == nullptr) {
+        switch(Minecraft::getVersion().second) {
+            case MC_VER::v1_18_31:
+                _CanAttack = (CanAttack)(this->VTable[110]);
+            break;
+        };
+    };
+
+    return (_CanAttack != nullptr ? _CanAttack(this, e, pB) : false);
+};
