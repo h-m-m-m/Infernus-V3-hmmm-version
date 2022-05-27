@@ -183,7 +183,7 @@ auto Manager::cleanEntityMap(void) -> void {
 	
 	for(auto [runtimeId, entity] : this->entityMap) {
 
-		if(level->fetchEntity(runtimeId, false) == nullptr)
+		if(level->fetchEntity(runtimeId, false) == nullptr || !entity->isAlive())
 			entityMap.erase(runtimeId);
 
 	};
