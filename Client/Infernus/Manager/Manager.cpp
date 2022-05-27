@@ -92,7 +92,7 @@ auto Manager::initModules(void) -> void {
 
 	};
 
-	This->baseTick();
+	this->baseTick();
 
 };
 
