@@ -15,6 +15,8 @@ public:
     auto isAlive(void) -> bool;
     auto canAttack(Actor*, bool) -> bool;
     auto getEntityTypeId(void) -> uint8_t;
+    auto startSwimming(void) -> void;
+    auto stopSwimming(void) -> void;
     auto swing(void) -> void;
 public:
     auto isMob(void) -> bool;
