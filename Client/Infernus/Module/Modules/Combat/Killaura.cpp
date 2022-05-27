@@ -49,6 +49,7 @@ auto Killaura::onGameMode(GameMode* GM) -> void {
 
         if(dist == distances[0] || (distances.size() > 1 ? dist == distances[0] : dist == distances[1]) || (distances.size() > 2 ? dist == distances[1] : dist == distances[2])) {
             GM->attack(entity);
+            player->swing();
         };
         
     };
