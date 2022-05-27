@@ -15,6 +15,8 @@ public:
 public:
     std::map<std::string, ImFont*> fonts;
 public:
+    std::map<uint64_t, Actor*> entityMap;
+public:
     bool isRunning = true;
 public:
     Manager(Client*);
@@ -28,6 +30,8 @@ public:
     auto getCategory(std::string) -> Category*;
 public:
     auto setImGuiStyles(void) -> void;
+public:
+    auto cleanEntityMap(void) -> void;
 };
 
 #endif /* CLIENT_INFERNUS_MANAGER_MANAGER */
