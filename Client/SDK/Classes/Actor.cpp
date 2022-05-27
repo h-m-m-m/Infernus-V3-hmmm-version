@@ -54,6 +54,21 @@ auto Actor::outOfWorld(void) -> bool {
     return (_OutOfWorld != nullptr ? _OutOfWorld(this) : false);
 };
 
+auto Actor::isAlive(void) -> bool {
+    using IsAlive = bool (__thiscall*)(Actor*);
+    static auto _IsAlive = (IsAlive)nullptr;
+
+    if(_IsAlive == nullptr) {
+        switch(Minecraft::getVersion().second) {
+            case MC_VER::v1_18_31:
+                _IsAlive = (IsAlive)(this->VTable[102]);
+            break;
+        };
+    };
+
+    return (_IsAlive != nullptr ? _IsAlive(this) : false);
+};
+
 auto Actor::canAttack(Actor* e, bool pB) -> bool {
     using CanAttack = bool (__thiscall*)(Actor*, Actor*, bool);
     static auto _CanAttack = (CanAttack)nullptr;
@@ -61,7 +76,7 @@ auto Actor::canAttack(Actor* e, bool pB) -> bool {
     if(_CanAttack == nullptr) {
         switch(Minecraft::getVersion().second) {
             case MC_VER::v1_18_31:
-                _CanAttack = (CanAttack)(this->VTable[110]);
+                _CanAttack = (CanAttack)(this->VTable[111]);
             break;
         };
     };
