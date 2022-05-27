@@ -14,6 +14,8 @@ public:
     auto outOfWorld(void) -> bool;
     auto isAlive(void) -> bool;
     auto canAttack(Actor*, bool) -> bool;
+    auto isJumping(void) -> bool;
+    auto consumeTotem(void) -> bool;
     auto getEntityTypeId(void) -> uint8_t;
     auto startSwimming(void) -> void;
     auto stopSwimming(void) -> void;
