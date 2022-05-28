@@ -443,3 +443,41 @@ auto Actor::getSize(void) -> Vec2<float> {
 
     return res;
 };
+
+auto Actor::getRot(void) -> Vec2<float> {
+    auto res = Vec2<float>();
+
+    switch(Minecraft::getVersion().second) {
+        case MC_VER::v1_18_31:
+            res = *(Vec2<float>*)((uintptr_t)(this) + 0x138);
+        break;
+    };
+
+    return res;
+};
+
+auto Actor::getMotion(void) -> Vec3<float> {
+    auto res = Vec3<float>();
+
+    switch(Minecraft::getVersion().second) {
+        case MC_VER::v1_18_31:
+            res = *(Vec3<float>*)((uintptr_t)(this) + 0x4F0);
+        break;
+    };
+
+    return res;
+};
+
+auto Actor::setMotion(Vec3<float> motion) -> void {
+    auto motionPtr = (Vec3<float>*)nullptr;
+    
+    switch(Minecraft::getVersion().second) {
+        case MC_VER::v1_18_31:
+            motionPtr = (Vec3<float>*)((uintptr_t)(this) + 0x4F0);
+        break;
+    };
+
+    if(motionPtr != nullptr)
+        *motionPtr = motion;
+
+};
