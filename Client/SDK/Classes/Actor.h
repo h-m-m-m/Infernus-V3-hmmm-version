@@ -25,6 +25,7 @@ public:
     auto isAdventure(void) -> bool;
     auto isSurvival(void) -> bool;
     auto isSpectator(void) -> bool;
+    auto isAttackableGamemode(void) -> bool;
 public:
     auto isMob(void) -> bool;
 };
