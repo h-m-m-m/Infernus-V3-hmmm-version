@@ -47,6 +47,7 @@ auto Manager::initCategories(void) -> void {
 
 /* Combat */
 #include "../Module/Modules/Combat/Killaura.h"
+#include "../Module/Modules/Combat/Hitbox.h"
 
 /* Visuals */
 #include "../Module/Modules/Visuals/TabGui.h"
@@ -71,6 +72,7 @@ auto Manager::initModules(void) -> void {
 	if(combat != nullptr && combat->modules.empty()) {
 
 		new Killaura(combat);
+		new Hitbox(combat);
 
 	};
 
