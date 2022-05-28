@@ -13,6 +13,7 @@ public:
     auto setPos(Vec3<float>) -> void;
     auto getPos(void) -> Vec3<float>;
     auto outOfWorld(void) -> bool;
+    auto getNameTag(void) -> std::string;
     auto isAlive(void) -> bool;
     auto canAttack(Actor*, bool) -> bool;
     auto isJumping(void) -> bool;
