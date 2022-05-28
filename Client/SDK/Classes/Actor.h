@@ -26,8 +26,11 @@ public:
     auto isSurvival(void) -> bool;
     auto isSpectator(void) -> bool;
     auto isAttackableGamemode(void) -> bool;
+    auto setSize(float, float) -> void;
 public:
     auto isMob(void) -> bool;
+    auto setStepHeight(float) -> void;
+    auto getSize(void) -> Vec2<float>;
 };
 
 enum EntityType {
