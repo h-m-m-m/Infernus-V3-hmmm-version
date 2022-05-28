@@ -13,7 +13,7 @@ public:
     virtual auto onGameMode(GameMode*) -> void override;
     virtual auto onRenderOptions(void) -> void override;
 private:
-    float speed = 1.4f;
+    float speed = 2.4f;
 };
 
 #endif /* CLIENT_INFERNUS_MODULE_MODULES_MOVEMENT_JETPACK */
