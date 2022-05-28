@@ -29,6 +29,6 @@ auto Jetpack::onGameMode(GameMode* GM) -> void {
 
 auto Jetpack::onRenderOptions(void) -> void {
 
-    ImGui::SliderFloat("Speed", &this->speed, 0.1f, 4.f);
+    ImGui::SliderFloat("Speed", &this->speed, 0.1f, 10.f);
 
 };
