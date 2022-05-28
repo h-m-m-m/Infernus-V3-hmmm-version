@@ -49,6 +49,10 @@ auto Manager::initCategories(void) -> void {
 #include "../Module/Modules/Combat/Killaura.h"
 #include "../Module/Modules/Combat/Hitbox.h"
 
+/* Movement */
+
+#include "../Module/Modules/Movement/Step.h"
+
 /* Visuals */
 #include "../Module/Modules/Visuals/TabGui.h"
 #include "../Module/Modules/Visuals/ClickGui.h"
@@ -73,6 +77,14 @@ auto Manager::initModules(void) -> void {
 
 		new Killaura(combat);
 		new Hitbox(combat);
+
+	};
+
+	/* Movement */
+
+	if(movement != nullptr && movement->modules.empty()) {
+
+		new Step(movement);
 
 	};
 
