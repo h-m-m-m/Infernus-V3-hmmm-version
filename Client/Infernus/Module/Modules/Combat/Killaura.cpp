@@ -12,9 +12,6 @@ auto Killaura::onGameMode(GameMode* GM) -> void {
     auto player = GM->player;
     auto myPos = player->getPos();
     
-    if(player->isSpectator())
-        return;
-    
     auto mgr = this->category->manager;
     auto distances = std::vector<float>();
 
@@ -44,14 +41,11 @@ auto Killaura::onGameMode(GameMode* GM) -> void {
     auto I = 0;
     for(auto [runtimeId, entity] : mgr->entityMap) {
 
+        if(I >= 3)
+            break;
+        
         if(runtimeId == player->getRuntimeId() || !entity->isAlive() || !entity->isMob() || !player->canAttack(entity, false))
             continue;
-        
-        if(entity->isInCreative() || entity->isSpectator())
-            continue;
-        
-        if(I >= 2)
-            break;
         
         auto entPos = entity->getPos();
 
