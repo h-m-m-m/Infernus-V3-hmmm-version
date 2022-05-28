@@ -70,6 +70,21 @@ auto Actor::outOfWorld(void) -> bool {
     return (_OutOfWorld != nullptr ? _OutOfWorld(this) : false);
 };
 
+auto Actor::getNameTag(void) -> std::string {
+    using GetNameTag = std::string* (__thiscall*)(Actor*);
+    static auto _GetNameTag = (GetNameTag)nullptr;
+
+    if(_GetNameTag == nullptr) {
+        switch(Minecraft::getVersion().second) {
+            case MC_VER::v1_18_31:
+                _GetNameTag = (GetNameTag)(this->VTable[63]);
+            break;
+        };
+    };
+
+    return (_GetNameTag != nullptr ? *_GetNameTag(this) : "");
+};
+
 auto Actor::isAlive(void) -> bool {
     using IsAlive = bool (__thiscall*)(Actor*);
     static auto _IsAlive = (IsAlive)nullptr;
