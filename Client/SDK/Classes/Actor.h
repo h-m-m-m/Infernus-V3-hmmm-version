@@ -10,6 +10,7 @@ public:
     auto getLevel(void) -> Level*;
 public:
     auto getRuntimeId(void) -> uint64_t;
+    auto setPos(Vec3<float>) -> void;
     auto getPos(void) -> Vec3<float>;
     auto outOfWorld(void) -> bool;
     auto isAlive(void) -> bool;
