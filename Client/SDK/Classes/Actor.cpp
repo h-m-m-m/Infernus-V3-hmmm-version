@@ -249,6 +249,21 @@ auto Actor::isSpectator(void) -> bool {
     return (_IsSpectator != nullptr ? _IsSpectator(this) : false);
 };
 
+auto Actor::isAttackableGamemode(void) -> bool {
+    using IsAttackableGamemode = bool (__thiscall*)(Actor*);
+    static auto _IsAttackableGamemode = (IsAttackableGamemode)nullptr;
+
+    if(_IsAttackableGamemode == nullptr) {
+        switch(Minecraft::getVersion().second) {
+            case MC_VER::v1_18_31:
+                _IsAttackableGamemode = (IsAttackableGamemode)(this->VTable[233]);
+            break;
+        };
+    };
+
+    return (_IsAttackableGamemode != nullptr ? _IsAttackableGamemode(this) : false);
+};
+
 auto Actor::isMob(void) -> bool {
     auto currType = this->getEntityTypeId();
 
