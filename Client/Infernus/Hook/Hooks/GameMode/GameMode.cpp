@@ -8,6 +8,8 @@ GameMode_Tick _GameMode_Tick;
 
 auto GameMode_Tick_Callback(GameMode* GM) -> void {
 
+    gmMgr->cleanEntityMap();
+
     for(auto category : gmMgr->categories) {
         for(auto mod : category->modules) {
             if(mod->isEnabled)
