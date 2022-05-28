@@ -264,6 +264,22 @@ auto Actor::isAttackableGamemode(void) -> bool {
     return (_IsAttackableGamemode != nullptr ? _IsAttackableGamemode(this) : false);
 };
 
+auto Actor::setSize(float width, float height) -> void {
+    using SetSize = void (__thiscall*)(Actor*, float, float);
+    static auto _SetSize = (SetSize)nullptr;
+
+    if(_SetSize == nullptr) {
+        switch(Minecraft::getVersion().second) {
+            case MC_VER::v1_18_31:
+                _SetSize = (SetSize)(this->VTable[239]);
+            break;
+        };
+    };
+
+    if(_SetSize != nullptr)
+        _SetSize(this, width, height);
+};
+
 auto Actor::isMob(void) -> bool {
     auto currType = this->getEntityTypeId();
 
@@ -385,4 +401,29 @@ auto Actor::isMob(void) -> bool {
     };
     
     return true;
+};
+
+auto Actor::setStepHeight(float f) -> void {
+    auto stepHeightPtr = (float*)nullptr;
+
+    switch(Minecraft::getVersion().second) {
+        case MC_VER::v1_18_31:
+            stepHeightPtr = (float*)((uintptr_t)(this) + 0x238);
+        break;
+    };
+
+    if(stepHeightPtr != nullptr)
+        *stepHeightPtr = f;
+};
+
+auto Actor::getSize(void) -> Vec2<float> {
+    auto res = Vec2<float>();
+
+    switch(Minecraft::getVersion().second) {
+        case MC_VER::v1_18_31:
+            res = *(Vec2<float>*)((uintptr_t)(this) + 0x4D0);
+        break;
+    };
+
+    return res;
 };
