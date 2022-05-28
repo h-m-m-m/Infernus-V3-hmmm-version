@@ -28,6 +28,7 @@ public:
     auto baseTick(void) -> void;
 public:
     auto getCategory(std::string) -> Category*;
+    auto isHoldingKey(uint64_t) -> bool;
 public:
     auto setImGuiStyles(void) -> void;
 public:
