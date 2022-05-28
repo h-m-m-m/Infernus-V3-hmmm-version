@@ -34,7 +34,7 @@ auto TabGui::onRender(void) -> void {
 
     auto catRect = ImVec4(startPos.x - 8.f, startPos.y - 2.f, startPos.x + (catWidth + 8.f), startPos.y + (catYOff + 2.f));
     
-    RenderUtils::fillRect(nullptr, catRect, ImColor(50.f, 50.f, 50.f, alpha - 0.2f), 0.f);
+    RenderUtils::fillRect(nullptr, catRect, ImColor(50.f, 50.f, 50.f, alpha - 0.2f), 3.f);
     RenderUtils::drawText(nullptr, startPos, client->name, fontSize, ImColor(255.f, 110.f, 30.f, alpha));
 
     auto I = 0;
@@ -74,7 +74,7 @@ auto TabGui::onRender(void) -> void {
 
         auto modRect = ImVec4(catRect.z + 4.f, catRect.y, catRect.z + (catWidth + 14.f), catRect.y + (catYOff + 2.f));
 
-        RenderUtils::fillRect(nullptr, modRect, ImColor(50.f, 50.f, 50.f, alpha - 0.2f), 0.f);
+        RenderUtils::fillRect(nullptr, modRect, ImColor(50.f, 50.f, 50.f, alpha - 0.2f), 3.f);
         RenderUtils::drawText(nullptr, ImVec2(modRect.x + 8.f, modRect.y), category->name, fontSize, ImColor(255.f, 110.f, 30.f, alpha));
         
         for(auto mod : modules) {
