@@ -52,6 +52,7 @@ auto Manager::initCategories(void) -> void {
 /* Movement */
 
 #include "../Module/Modules/Movement/Step.h"
+#include "../Module/Modules/Movement/Speed.h"
 #include "../Module/Modules/Movement/Jetpack.h"
 
 /* Player */
@@ -90,6 +91,7 @@ auto Manager::initModules(void) -> void {
 	if(movement != nullptr && movement->modules.empty()) {
 
 		new Step(movement);
+		new Speed(movement);
 		new Jetpack(movement);
 
 	};
