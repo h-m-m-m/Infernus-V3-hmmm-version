@@ -10,6 +10,8 @@ auto TestModule::onRender(void) -> void {
         then = std::chrono::high_resolution_clock::now();
     };
 
+    this->updateAlpha();
+
     auto instance = Minecraft::getClientInstance();
     auto guiData = (instance != nullptr ? instance->getGuiData() : nullptr);
 
@@ -23,8 +25,8 @@ auto TestModule::onRender(void) -> void {
     auto calcPosA = RenderUtils::getTextSize(textA, fontSize);
     auto textPosA = ImVec2(12.f, displaySize.y - (calcPosA.y + 12.f));
 
-    RenderUtils::fillRect(nullptr, ImVec4(textPosA.x - 2.f, textPosA.y - 2.f, calcPosA.x + 12.f, (textPosA.y + 2.f) + calcPosA.y), ImColor(50.f, 50.f, 50.f, .8f), 3.f);
-    RenderUtils::drawText(nullptr, textPosA, textA, fontSize, ImColor(232.f, 99.f, 32.f));
+    RenderUtils::fillRect(nullptr, ImVec4(textPosA.x - 2.f, textPosA.y - 2.f, calcPosA.x + 12.f, (textPosA.y + 2.f) + calcPosA.y), ImColor(50.f, 50.f, 50.f, alpha - 0.2f), 3.f);
+    RenderUtils::drawText(nullptr, textPosA, textA, fontSize, ImColor(232.f, 99.f, 32.f, alpha));
 
     auto player = instance->getLocalPlayer();
 
@@ -37,8 +39,8 @@ auto TestModule::onRender(void) -> void {
     auto calcPosB = RenderUtils::getTextSize(textB, fontSize);
     auto textPosB = ImVec2(12.f, textPosA.y - (calcPosB.y + 12.f));
 
-    RenderUtils::fillRect(nullptr, ImVec4(textPosB.x - 2.f, textPosB.y - 2.f, calcPosB.x + 12.f, (textPosB.y + 2.f) + calcPosB.y), ImColor(50.f, 50.f, 50.f, .8f), 3.f);
-    RenderUtils::drawText(nullptr, textPosB, textB, fontSize, ImColor(232.f, 99.f, 32.f));
+    RenderUtils::fillRect(nullptr, ImVec4(textPosB.x - 2.f, textPosB.y - 2.f, calcPosB.x + 12.f, (textPosB.y + 2.f) + calcPosB.y), ImColor(50.f, 50.f, 50.f, alpha - 0.2f), 3.f);
+    RenderUtils::drawText(nullptr, textPosB, textB, fontSize, ImColor(232.f, 99.f, 32.f, alpha));
 };
 
 auto TestModule::onRenderOptions(void) -> void {
@@ -66,6 +68,24 @@ auto TestModule::onRenderOptions(void) -> void {
 
 };
 
-auto TestModule::onGameMode(GameMode* GM) -> void {
-    //
+auto TestModule::updateAlpha(void) -> void {
+    auto reachOff = [&](float* value, float target, float modifier) {
+        if(*value < target)
+            *value += modifier;
+        else
+            *value -= modifier;
+    };
+
+    auto instance = Minecraft::getClientInstance();
+    auto player = (instance != nullptr ? instance->getLocalPlayer() : nullptr);
+    auto mcGame = (instance != nullptr ? instance->getMinecraftGame() : nullptr);
+    auto modifier = 0.04f;
+    
+    if(mcGame == nullptr || player == nullptr)
+        return reachOff(&alpha, 1.f, modifier);
+    
+    if(mcGame->canUseKeys)
+        return reachOff(&alpha, 1.f, modifier);
+    else
+        return reachOff(&alpha, .0f, modifier);
 };
