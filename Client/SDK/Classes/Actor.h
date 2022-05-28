@@ -32,6 +32,9 @@ public:
     auto isMob(void) -> bool;
     auto setStepHeight(float) -> void;
     auto getSize(void) -> Vec2<float>;
+    auto getRot(void) -> Vec2<float>;
+    auto getMotion(void) -> Vec3<float>;
+    auto setMotion(Vec3<float>) -> void;
 };
 
 enum EntityType {
