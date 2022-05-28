@@ -23,9 +23,6 @@ auto Killaura::onGameMode(GameMode* GM) -> void {
         if(runtimeId == player->getRuntimeId() || !entity->isAlive() || !entity->isMob() || !player->canAttack(entity, false))
             continue;
         
-        if(entity->isInCreative() || entity->isSpectator())
-            continue;
-        
         auto entPos = entity->getPos();
 
         auto dX = myPos.x - entPos.x;
