@@ -15,6 +15,6 @@ auto Step::onDisable(void) -> void {
 
 auto Step::onGameMode(GameMode* GM) -> void {
 
-    GM->player->setStepHeight(2.f);
+    GM->player->setStepHeight(2.5625);
 
 };
