@@ -52,6 +52,7 @@ auto Manager::initCategories(void) -> void {
 /* Movement */
 
 #include "../Module/Modules/Movement/Step.h"
+#include "../Module/Modules/Movement/Jetpack.h"
 
 /* Player */
 
@@ -89,6 +90,7 @@ auto Manager::initModules(void) -> void {
 	if(movement != nullptr && movement->modules.empty()) {
 
 		new Step(movement);
+		new Jetpack(movement);
 
 	};
 
@@ -144,6 +146,16 @@ auto Manager::getCategory(std::string name) -> Category* {
             return category;
     
     return nullptr;
+
+};
+
+auto Manager::isHoldingKey(uint64_t key) -> bool {
+	
+	for(auto [itKey, isDown] : this->keyMap)
+		if(itKey == key)
+			return isDown;
+	
+	return false;
 
 };
 
