@@ -174,6 +174,81 @@ auto Actor::swing(void) -> void {
         _Swing(this);
 };
 
+auto Actor::isWorldBuilder(void) -> bool {
+    using IsWorldBuilder = bool (__thiscall*)(Actor*);
+    static auto _IsWorldBuilder = (IsWorldBuilder)nullptr;
+
+    if(_IsWorldBuilder == nullptr) {
+        switch(Minecraft::getVersion().second) {
+            case MC_VER::v1_18_31:
+                _IsWorldBuilder = (IsWorldBuilder)(this->VTable[228]);
+            break;
+        };
+    };
+
+    return (_IsWorldBuilder != nullptr ? _IsWorldBuilder(this) : false);
+};
+
+auto Actor::isInCreative(void) -> bool {
+    using IsInCreative = bool (__thiscall*)(Actor*);
+    static auto _IsInCreative = (IsInCreative)nullptr;
+
+    if(_IsInCreative == nullptr) {
+        switch(Minecraft::getVersion().second) {
+            case MC_VER::v1_18_31:
+                _IsInCreative = (IsInCreative)(this->VTable[229]);
+            break;
+        };
+    };
+
+    return (_IsInCreative != nullptr ? _IsInCreative(this) : false);
+};
+
+auto Actor::isAdventure(void) -> bool {
+    using IsAdventure = bool (__thiscall*)(Actor*);
+    static auto _IsAdventure = (IsAdventure)nullptr;
+
+    if(_IsAdventure == nullptr) {
+        switch(Minecraft::getVersion().second) {
+            case MC_VER::v1_18_31:
+                _IsAdventure = (IsAdventure)(this->VTable[230]);
+            break;
+        };
+    };
+
+    return (_IsAdventure != nullptr ? _IsAdventure(this) : false);
+};
+
+auto Actor::isSurvival(void) -> bool {
+    using IsSurvival = bool (__thiscall*)(Actor*);
+    static auto _IsSurvival = (IsSurvival)nullptr;
+
+    if(_IsSurvival == nullptr) {
+        switch(Minecraft::getVersion().second) {
+            case MC_VER::v1_18_31:
+                _IsSurvival = (IsSurvival)(this->VTable[231]);
+            break;
+        };
+    };
+
+    return (_IsSurvival != nullptr ? _IsSurvival(this) : false);
+};
+
+auto Actor::isSpectator(void) -> bool {
+    using IsSpectator = bool (__thiscall*)(Actor*);
+    static auto _IsSpectator = (IsSpectator)nullptr;
+
+    if(_IsSpectator == nullptr) {
+        switch(Minecraft::getVersion().second) {
+            case MC_VER::v1_18_31:
+                _IsSpectator = (IsSpectator)(this->VTable[232]);
+            break;
+        };
+    };
+
+    return (_IsSpectator != nullptr ? _IsSpectator(this) : false);
+};
+
 auto Actor::isMob(void) -> bool {
     auto currType = this->getEntityTypeId();
 
