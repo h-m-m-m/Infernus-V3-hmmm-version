@@ -6,6 +6,8 @@
 #include "../../../../../Includes/imgui/DroidSans.hpp"
 #include "../../../../../Includes/imgui/Minecraft.hpp"
 #include "../../../../../Includes/imgui/DejaVuSerif.hpp"
+#include "../../../../../Includes/imgui/DancingScript.hpp"
+#include "../../../../../Includes/imgui/QuickSand.hpp"
 
 class SwapChain_Hook : public Hook {
 public:
