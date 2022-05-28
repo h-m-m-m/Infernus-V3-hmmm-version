@@ -27,6 +27,22 @@ auto Actor::getRuntimeId(void) -> uint64_t {
     return res;
 };
 
+auto Actor::setPos(Vec3<float> pos) -> void {
+    using SetPos = void (__thiscall*)(Actor*, Vec3<float>*);
+    static auto _SetPos = (SetPos)nullptr;
+
+    if(_SetPos == nullptr) {
+        switch(Minecraft::getVersion().second) {
+            case MC_VER::v1_18_31:
+                _SetPos = (SetPos)(this->VTable[19]);
+            break;
+        };
+    };
+
+    if(_SetPos != nullptr)
+        _SetPos(this, &pos);
+};
+
 auto Actor::getPos(void) -> Vec3<float> {
     auto res = Vec3<float>();
 
