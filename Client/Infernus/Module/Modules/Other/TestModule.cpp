@@ -19,13 +19,26 @@ auto TestModule::onRender(void) -> void {
     auto displaySize = guiData->screenRes1;
     auto fontSize = 10 * guiData->uiScale;
     
-    auto text = std::string("Infernus V3 | FPS: " + std::to_string((int)currFps));
-    auto calcPos = RenderUtils::getTextSize(text, fontSize);
-    auto textPos = ImVec2(12.f, displaySize.y - (calcPos.y + 12.f));
+    auto textA = std::string("Infernus V3 | FPS: " + std::to_string((int)currFps));
+    auto calcPosA = RenderUtils::getTextSize(textA, fontSize);
+    auto textPosA = ImVec2(12.f, displaySize.y - (calcPosA.y + 12.f));
 
-    RenderUtils::fillRect(nullptr, ImVec4(textPos.x - 2.f, textPos.y - 2.f, calcPos.x + 10.f, (textPos.y + 2.f) + calcPos.y), ImColor(50.f, 50.f, 50.f, .8f), 1.2f);
-    RenderUtils::drawText(nullptr, textPos, text, fontSize, ImColor(232.f, 99.f, 32.f));
+    RenderUtils::fillRect(nullptr, ImVec4(textPosA.x - 2.f, textPosA.y - 2.f, calcPosA.x + 12.f, (textPosA.y + 2.f) + calcPosA.y), ImColor(50.f, 50.f, 50.f, .8f), 1.2f);
+    RenderUtils::drawText(nullptr, textPosA, textA, fontSize, ImColor(232.f, 99.f, 32.f));
 
+    auto player = instance->getLocalPlayer();
+
+    if(player == nullptr)
+        return;
+    
+    auto myPos = player->getPos();
+    
+    auto textB = std::string(player->getNameTag() + " | " + std::to_string((int)myPos.x) + ", " + std::to_string((int)myPos.y - 2) + ", " + std::to_string((int)myPos.z));
+    auto calcPosB = RenderUtils::getTextSize(textB, fontSize);
+    auto textPosB = ImVec2(12.f, textPosA.y - (calcPosB.y + 12.f));
+
+    RenderUtils::fillRect(nullptr, ImVec4(textPosB.x - 2.f, textPosB.y - 2.f, calcPosB.x + 12.f, (textPosB.y + 2.f) + calcPosB.y), ImColor(50.f, 50.f, 50.f, .8f), 1.2f);
+    RenderUtils::drawText(nullptr, textPosB, textB, fontSize, ImColor(232.f, 99.f, 32.f));
 };
 
 auto TestModule::onRenderOptions(void) -> void {
