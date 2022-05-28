@@ -20,6 +20,11 @@ public:
     auto startSwimming(void) -> void;
     auto stopSwimming(void) -> void;
     auto swing(void) -> void;
+    auto isWorldBuilder(void) -> bool;
+    auto isInCreative(void) -> bool;
+    auto isAdventure(void) -> bool;
+    auto isSurvival(void) -> bool;
+    auto isSpectator(void) -> bool;
 public:
     auto isMob(void) -> bool;
 };
