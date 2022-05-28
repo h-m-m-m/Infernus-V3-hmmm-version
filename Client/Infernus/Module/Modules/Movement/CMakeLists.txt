@@ -1,4 +1,5 @@
 target_sources(Infernus PRIVATE
     "Step.cpp"
-        "Jetpack.cpp"
+        "Speed.cpp"
+            "Jetpack.cpp"
 )
