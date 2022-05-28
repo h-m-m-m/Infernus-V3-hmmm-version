@@ -53,6 +53,10 @@ auto Manager::initCategories(void) -> void {
 
 #include "../Module/Modules/Movement/Step.h"
 
+/* Player */
+
+#include "../Module/Modules/Player/AutoSprint.h"
+
 /* Visuals */
 #include "../Module/Modules/Visuals/TabGui.h"
 #include "../Module/Modules/Visuals/ClickGui.h"
@@ -85,6 +89,14 @@ auto Manager::initModules(void) -> void {
 	if(movement != nullptr && movement->modules.empty()) {
 
 		new Step(movement);
+
+	};
+
+	/* Player */
+
+	if(player != nullptr && player->modules.empty()) {
+
+		new AutoSprint(player);
 
 	};
 

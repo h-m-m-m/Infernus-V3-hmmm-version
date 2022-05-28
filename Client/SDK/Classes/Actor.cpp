@@ -280,6 +280,22 @@ auto Actor::setSize(float width, float height) -> void {
         _SetSize(this, width, height);
 };
 
+auto Actor::setSprinting(bool state) -> void {
+    using SetSprinting = void (__thiscall*)(Actor*, bool);
+    static auto _SetSprinting = (SetSprinting)nullptr;
+
+    if(_SetSprinting == nullptr) {
+        switch(Minecraft::getVersion().second) {
+            case MC_VER::v1_18_31:
+                _SetSprinting = (SetSprinting)(this->VTable[281]);
+            break;
+        };
+    };
+
+    if(_SetSprinting != nullptr)
+        _SetSprinting(this, state);
+};
+
 auto Actor::isMob(void) -> bool {
     auto currType = this->getEntityTypeId();
 

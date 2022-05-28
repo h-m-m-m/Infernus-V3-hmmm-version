@@ -27,6 +27,7 @@ public:
     auto isSpectator(void) -> bool;
     auto isAttackableGamemode(void) -> bool;
     auto setSize(float, float) -> void;
+    auto setSprinting(bool) -> void;
 public:
     auto isMob(void) -> bool;
     auto setStepHeight(float) -> void;
