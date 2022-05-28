@@ -11,7 +11,7 @@ public:
 public:
     virtual auto onGameMode(GameMode*) -> void override;
 private:
-    int msDelay = 150;
+    int msDelay = 0;
     std::chrono::time_point<std::chrono::steady_clock> savedTime = std::chrono::high_resolution_clock::now();
 };
 
