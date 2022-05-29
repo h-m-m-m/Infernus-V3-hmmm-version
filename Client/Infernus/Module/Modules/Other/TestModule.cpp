@@ -35,7 +35,7 @@ auto TestModule::onRender(void) -> void {
     
     auto myPos = player->getPos();
     
-    auto textB = std::string(player->getNameTag() + " | " + std::to_string((int)myPos.x) + ", " + std::to_string((int)myPos.y - 2) + ", " + std::to_string((int)myPos.z));
+    auto textB = std::string(player->getXboxGamertag() + " | " + std::to_string((int)myPos.x) + ", " + std::to_string((int)myPos.y - 2) + ", " + std::to_string((int)myPos.z));
     auto calcPosB = RenderUtils::getTextSize(textB, fontSize);
     auto textPosB = ImVec2(12.f, textPosA.y - (calcPosB.y + 12.f));
 
