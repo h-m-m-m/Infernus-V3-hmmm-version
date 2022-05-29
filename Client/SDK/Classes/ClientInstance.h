@@ -3,6 +3,7 @@
 
 #include "GuiData.h"
 #include "MinecraftGame.h"
+#include "LevelRenderer.h"
 
 class Player;
 
@@ -12,8 +13,13 @@ private:
 public:
     auto getGuiData(void) -> GuiData*;
     auto getMinecraftGame(void) -> MinecraftGame*;
+    auto getLevelRenderer(void) -> LevelRenderer*;
 public:
     auto getLocalPlayer(void) -> Player*;
+public:
+    auto getFov(void) -> Vec2<float>;
+    auto getRefDef(void) -> glmatrixf*;
+    auto gameToScreenPos(Vec3<float>) -> Vec2<float>;
 };
 
 #endif /* CLIENT_SDK_CLASSES_CLIENTINSTANCE */

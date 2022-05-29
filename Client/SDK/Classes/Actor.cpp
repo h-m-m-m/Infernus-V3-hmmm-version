@@ -146,15 +146,18 @@ auto Actor::consumeTotem(void) -> bool {
 };
 
 auto Actor::getEntityTypeId(void) -> uint8_t {
-    auto res = (uint8_t)NULL;
+    using GetEntityTypeId = uint8_t (__thiscall*)(Actor*);
+    static auto _GetEntityTypeId = (GetEntityTypeId)nullptr;
 
-    switch(Minecraft::getVersion().second) {
-        case MC_VER::v1_18_31:
-            res = *(uint8_t*)((uintptr_t)(this) + 0x3D4);
-        break;
+    if(_GetEntityTypeId == nullptr) {
+        switch(Minecraft::getVersion().second) {
+            case MC_VER::v1_18_31:
+                _GetEntityTypeId = (GetEntityTypeId)(this->VTable[169]);
+            break;
+        };
     };
 
-    return res;
+    return (_GetEntityTypeId != nullptr ? _GetEntityTypeId(this) : NULL);
 };
 
 auto Actor::startSwimming(void) -> void {
@@ -536,4 +539,16 @@ auto Actor::setMotion(Vec3<float> motion) -> void {
     if(motionPtr != nullptr)
         *motionPtr = motion;
 
+};
+
+auto Actor::getXboxGamertag(void) -> std::string {
+    auto gamertag = std::string();
+
+    switch(Minecraft::getVersion().second) {
+        case MC_VER::v1_18_31:
+            gamertag = *(std::string*)((uintptr_t)(this) + 0x8B8);
+        break;
+    };
+    
+    return gamertag;
 };

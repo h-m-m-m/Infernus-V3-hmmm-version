@@ -39,6 +39,7 @@ public:
     auto getRot(void) -> Vec2<float>;
     auto getMotion(void) -> Vec3<float>;
     auto setMotion(Vec3<float>) -> void;
+    auto getXboxGamertag(void) -> std::string;
 };
 
 enum EntityType {

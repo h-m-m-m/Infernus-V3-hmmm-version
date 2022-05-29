@@ -63,6 +63,7 @@ auto Manager::initCategories(void) -> void {
 /* Visuals */
 #include "../Module/Modules/Visuals/TabGui.h"
 #include "../Module/Modules/Visuals/ClickGui.h"
+#include "../Module/Modules/Visuals/Nametags.h"
 
 /* Other */
 #include "../Module/Modules/Other/TestModule.h"
@@ -112,6 +113,7 @@ auto Manager::initModules(void) -> void {
 
 		new TabGui(visuals);
 		new ClickGui(visuals);
+		new Nametags(visuals);
 
 	};
 
