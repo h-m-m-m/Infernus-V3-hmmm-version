@@ -53,6 +53,7 @@ auto Manager::initCategories(void) -> void {
 
 #include "../Module/Modules/Movement/Step.h"
 #include "../Module/Modules/Movement/Speed.h"
+#include "../Module/Modules/Movement/AirJump.h"
 #include "../Module/Modules/Movement/Jetpack.h"
 
 /* Player */
@@ -92,6 +93,7 @@ auto Manager::initModules(void) -> void {
 
 		new Step(movement);
 		new Speed(movement);
+		new AirJump(movement);
 		new Jetpack(movement);
 
 	};
@@ -224,7 +226,7 @@ auto Manager::cleanEntityMap(void) -> void {
 	
 	for(auto [runtimeId, entity] : this->entityMap) {
 
-		if(level->fetchEntity(runtimeId, false) == nullptr || !entity->isAlive())
+		if(level->fetchEntity(runtimeId, false) == nullptr)
 			entityMap.erase(runtimeId);
 
 	};
