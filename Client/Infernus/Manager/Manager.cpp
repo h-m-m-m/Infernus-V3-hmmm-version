@@ -135,6 +135,11 @@ auto Manager::baseTick(void) -> void {
 			for(auto module : category->modules)
 				module->baseTick();
 	};
+
+	for(auto category : this->categories)
+		for(auto module : category->modules)
+			if(module->isEnabled)
+				module->onDisable();
 	
 	kiero::shutdown();
 	MH_Uninitialize();
