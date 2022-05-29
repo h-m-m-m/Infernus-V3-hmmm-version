@@ -23,8 +23,7 @@ auto ClickGui::onRender(void) -> void {
 
                         };
 
-                        if (mod->hasOptions()) {
-
+                        if (mod->hasOptions) {
                             if (ImGui::BeginMenu("Options")) {
 
 

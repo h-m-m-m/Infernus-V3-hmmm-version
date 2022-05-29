@@ -5,7 +5,7 @@
 
 class Speed : public Module {
 public:
-    Speed(Category* c) : Module(c, "Speed") {
+    Speed(Category* c) : Module(c, "Speed", false) {
         //
     };
 public:

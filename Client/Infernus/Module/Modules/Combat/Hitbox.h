@@ -5,13 +5,12 @@
 
 class Hitbox : public Module {
 public:
-    Hitbox(Category* c) : Module(c, "Hitbox") {
+    Hitbox(Category* c) : Module(c, "Hitbox", true) {
         //
     };
 public:
     virtual auto onDisable(void) -> void override;
     virtual auto onGameMode(GameMode*) -> void override;
-    auto hasOptions() -> bool override;
     virtual auto onRenderOptions(void) -> void override;
 private:
     float width = 2.f;

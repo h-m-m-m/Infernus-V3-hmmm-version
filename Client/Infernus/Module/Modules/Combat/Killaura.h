@@ -5,7 +5,7 @@
 
 class Killaura : public Module {
 public:
-    Killaura(Category* c) : Module(c, "Killaura") {
+    Killaura(Category* c) : Module(c, "Killaura", false) {
         //
     };
 public:

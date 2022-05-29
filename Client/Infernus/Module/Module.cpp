@@ -1,9 +1,10 @@
 #include "Module.h"
 #include "../Category/Category.h"
 
-Module::Module(Category* category, std::string name) {
+Module::Module(Category* category, std::string name, bool hasOptions) {
     this->category = category;
     this->name = name;
+    this->hasOptions = hasOptions;
 
     this->category->modules.push_back(this);
 };

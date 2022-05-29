@@ -5,14 +5,13 @@
 
 class Jetpack : public Module {
 public:
-    Jetpack(Category* c) : Module(c, "Jetpack") {
+    Jetpack(Category* c) : Module(c, "Jetpack", true) {
         this->setKey(0x46); /* F */
     };
 public:
     virtual auto onTick(void) -> void override;
     virtual auto onGameMode(GameMode*) -> void override;
     virtual auto onRenderOptions(void) -> void override;
-    virtual auto hasOptions() -> bool override;
 private:
     float speed = 2.4f;
 };

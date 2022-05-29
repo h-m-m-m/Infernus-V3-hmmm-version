@@ -5,7 +5,7 @@
 
 class AirJump : public Module {
 public:
-    AirJump(Category* c) : Module(c, "AirJump") {
+    AirJump(Category* c) : Module(c, "AirJump", false) {
         //
     };
 public:
