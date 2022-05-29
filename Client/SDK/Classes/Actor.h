@@ -32,6 +32,8 @@ public:
     auto setSprinting(bool) -> void;
 public:
     auto isMob(void) -> bool;
+    auto isOnGround(void) -> bool;
+    auto setOnGround(bool) -> void;
     auto setStepHeight(float) -> void;
     auto getSize(void) -> Vec2<float>;
     auto getRot(void) -> Vec2<float>;
