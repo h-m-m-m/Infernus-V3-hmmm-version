@@ -47,6 +47,10 @@ auto Hitbox::onGameMode(GameMode* GM) -> void {
 
 };
 
+auto Hitbox::hasOptions() -> bool {
+    return true;
+}
+
 auto Hitbox::onRenderOptions(void) -> void {
     
     ImGui::SliderFloat("Width", &this->width, 0.6, 6.f);

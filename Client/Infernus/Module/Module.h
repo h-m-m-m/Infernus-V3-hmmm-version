@@ -13,6 +13,7 @@ public:
     std::string name;
     bool isEnabled = false, wasEnabled = false;
     uint64_t key = NULL;
+    virtual auto hasOptions() -> bool;
 public:
     Module(Category*, std::string);
 public:

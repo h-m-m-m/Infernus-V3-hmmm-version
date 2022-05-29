@@ -12,6 +12,7 @@ public:
     virtual auto onTick(void) -> void override;
     virtual auto onGameMode(GameMode*) -> void override;
     virtual auto onRenderOptions(void) -> void override;
+    virtual auto hasOptions() -> bool override;
 private:
     float speed = 2.4f;
 };

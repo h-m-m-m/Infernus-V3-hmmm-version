@@ -27,6 +27,10 @@ auto Jetpack::onGameMode(GameMode* GM) -> void {
     player->setMotion(Vec3<float>(cos(angles.y) * cos(angles.x) * speed, sin(angles.x) * speed, sin(angles.y) * cos(angles.x) * speed));
 };
 
+auto Jetpack::hasOptions() -> bool {
+    return true;
+}
+
 auto Jetpack::onRenderOptions(void) -> void {
 
     ImGui::SliderFloat("Speed", &this->speed, 0.1f, 10.f);

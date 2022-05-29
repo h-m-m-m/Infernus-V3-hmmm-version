@@ -43,6 +43,10 @@ auto TestModule::onRender(void) -> void {
     RenderUtils::drawText(nullptr, textPosB, textB, fontSize, ImColor(232.f, 99.f, 32.f, alpha));
 };
 
+auto TestModule::hasOptions() -> bool {
+    return true;
+}
+
 auto TestModule::onRenderOptions(void) -> void {
 
     auto mgr = this->category->manager;
