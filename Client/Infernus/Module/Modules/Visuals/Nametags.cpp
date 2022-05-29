@@ -18,7 +18,7 @@ auto Nametags::onRender(void) -> void {
 
     for(auto [runtimeId, entity] : mgr->entityMap) {
         
-        if(runtimeId == player->getRuntimeId() || entity->getEntityTypeId() != 63)
+        if(runtimeId == player->getRuntimeId())
             continue;
         
         auto pos = entity->getPos();
