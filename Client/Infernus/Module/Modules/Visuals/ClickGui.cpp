@@ -23,12 +23,15 @@ auto ClickGui::onRender(void) -> void {
 
                         };
 
-                        if(ImGui::BeginMenu("Options")) {
+                        if (mod->hasOptions()) {
 
-                            
-                            mod->onRenderOptions();
-                            ImGui::EndMenu();
+                            if (ImGui::BeginMenu("Options")) {
 
+
+                                mod->onRenderOptions();
+                                ImGui::EndMenu();
+
+                            };
                         };
                         
                         ImGui::EndMenu();
