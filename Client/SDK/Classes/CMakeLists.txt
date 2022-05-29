@@ -1,5 +1,6 @@
 target_sources(Infernus PRIVATE
-    "Level.cpp"    
-        "Actor.cpp"
-            "Player.cpp"
+    "ClientInstance.cpp"
+        "Level.cpp"
+            "Actor.cpp"
+                "Player.cpp"
 )
