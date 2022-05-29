@@ -5,12 +5,11 @@
 
 class TestModule : public Module {
 public:
-    TestModule(Category* c) : Module(c, "Test Module") {
+    TestModule(Category* c) : Module(c, "Test Module", true) {
         this->setState(true);
     };
 public:
     virtual auto onRender(void) -> void override;
-    auto hasOptions() -> bool override;
     virtual auto onRenderOptions(void) -> void override;
 private:
     std::chrono::time_point<std::chrono::high_resolution_clock> then = std::chrono::high_resolution_clock::now();
