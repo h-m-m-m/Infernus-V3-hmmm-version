@@ -11,6 +11,8 @@ auto ClickGui::onRender(void) -> void {
 
         for(auto category : mgr->categories) {
             
+            if (category->modules.empty()) return;
+
             if(ImGui::BeginMenu(category->name.c_str())) {
 
                 for(auto mod : category->modules) {
