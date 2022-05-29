@@ -35,15 +35,12 @@ auto TestModule::onRender(void) -> void {
     
     auto myPos = player->getPos();
     
-    auto textB = std::string(player->getNameTag() + " | " + std::to_string((int)myPos.x) + ", " + std::to_string((int)myPos.y - 2) + ", " + std::to_string((int)myPos.z));
+    auto textB = std::string(player->getXboxGamertag() + " | " + std::to_string((int)myPos.x) + ", " + std::to_string((int)myPos.y - 2) + ", " + std::to_string((int)myPos.z));
     auto calcPosB = RenderUtils::getTextSize(textB, fontSize);
     auto textPosB = ImVec2(12.f, textPosA.y - (calcPosB.y + 12.f));
 
     RenderUtils::fillRect(nullptr, ImVec4(textPosB.x - 2.f, textPosB.y - 2.f, calcPosB.x + 12.f, (textPosB.y + 2.f) + calcPosB.y), ImColor(50.f, 50.f, 50.f, alpha - 0.2f), 3.f);
     RenderUtils::drawText(nullptr, textPosB, textB, fontSize, ImColor(232.f, 99.f, 32.f, alpha));
-
-    auto screenPos = instance->gameToScreenPos(Vec3<float>(0.f, 100.f, 0.f));
-    RenderUtils::drawText(nullptr, ImVec2(screenPos.x, screenPos.y), "Hello, World!", fontSize, ImColor(232.f, 99.f, 32.f, alpha));
 };
 
 auto TestModule::onRenderOptions(void) -> void {
