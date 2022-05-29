@@ -450,6 +450,31 @@ auto Actor::isMob(void) -> bool {
     return true;
 };
 
+auto Actor::isOnGround(void) -> bool {
+    auto res = false;
+
+    switch(Minecraft::getVersion().second) {
+        case MC_VER::v1_18_31:
+            res = *(bool*)((uintptr_t)(this) + 0x1D8);
+        break;
+    };
+
+    return res;
+};
+
+auto Actor::setOnGround(bool state) -> void {
+    auto onGroundPtr = (bool*)nullptr;
+
+    switch(Minecraft::getVersion().second) {
+        case MC_VER::v1_18_31:
+            onGroundPtr = (bool*)((uintptr_t)(this) + 0x1D8);
+        break;
+    };
+
+    if(onGroundPtr != nullptr)
+        *onGroundPtr = state;
+};
+
 auto Actor::setStepHeight(float f) -> void {
     auto stepHeightPtr = (float*)nullptr;
 
