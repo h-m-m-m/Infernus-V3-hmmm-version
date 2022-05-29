@@ -2,6 +2,30 @@
 #include "../../../Category/Category.h"
 #include "../../../Manager/Manager.h"
 
+auto sanitize(std::string text) -> std::string { // https://github.com/horionclient/Horion/blob/cb636b579c27388c59c44705549263a4f9407573/Utils/Utils.cpp#L34
+	std::string out;
+	bool wasValid = true;
+
+    auto invalidChar = [](char c) {
+        return !(c >= 0 && *reinterpret_cast<unsigned char*>(&c) < 128);
+    };
+	
+    for (char c : text) {
+		bool isValid = !invalidChar(c);
+		if (wasValid) {
+			if (!isValid) {
+				wasValid = false;
+			} else {
+				out += c;
+			}
+		} else {
+			wasValid = isValid;
+		}
+	};
+
+	return out;
+};
+
 auto Nametags::onRender(void) -> void {
     auto mgr = this->category->manager;
     
@@ -24,7 +48,7 @@ auto Nametags::onRender(void) -> void {
         auto pos = entity->getPos();
         pos.y += 1.5f;
 
-        auto name = entity->getNameTag();
+        auto name = sanitize(entity->getNameTag());
         auto textPos = instance->gameToScreenPos(pos);
 
         if(name.length() <= 0 || name.length() >= 25)
@@ -32,10 +56,7 @@ auto Nametags::onRender(void) -> void {
 
         if(textPos.x <= 0 || textPos.y <= 0)
             continue;
-        
-        if(name.rfind("§") == 0 && name.length() > 2)
-            name.erase(0, 3);
-        
+
         auto fontSize = 10.f * guidata->uiScale;
         auto textSize = RenderUtils::getTextSize(name, fontSize);
 
