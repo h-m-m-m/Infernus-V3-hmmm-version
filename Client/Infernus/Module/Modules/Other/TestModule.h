@@ -5,7 +5,7 @@
 
 class TestModule : public Module {
 public:
-    TestModule(Category* c) : Module(c, "Test Module", true) {
+    TestModule(Category* c) : Module(c, "Test Module") {
         this->setState(true);
     };
 public:

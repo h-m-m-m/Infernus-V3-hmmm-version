@@ -5,7 +5,7 @@
 
 class Uninject : public Module {
 public:
-    Uninject(Category* c) : Module(c, "Uninject", false) {
+    Uninject(Category* c) : Module(c, "Uninject") {
         //
     };
 public:

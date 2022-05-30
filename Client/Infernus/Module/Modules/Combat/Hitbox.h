@@ -5,7 +5,7 @@
 
 class Hitbox : public Module {
 public:
-    Hitbox(Category* c) : Module(c, "Hitbox", true) {
+    Hitbox(Category* c) : Module(c, "Hitbox") {
         //
     };
 public:

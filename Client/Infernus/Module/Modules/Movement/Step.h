@@ -5,7 +5,7 @@
 
 class Step : public Module {
 public:
-    Step(Category* c) : Module(c, "Step", false) {
+    Step(Category* c) : Module(c, "Step") {
         //
     };
 public:

@@ -13,9 +13,9 @@ public:
     std::string name;
     bool isEnabled = false, wasEnabled = false;
     uint64_t key = NULL;
-    bool hasOptions;
+    bool newKey = false;
 public:
-    Module(Category*, std::string, bool);
+    Module(Category*, std::string);
 public:
     auto baseTick(void) -> void;
 public:

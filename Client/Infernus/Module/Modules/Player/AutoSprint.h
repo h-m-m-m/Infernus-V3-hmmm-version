@@ -5,7 +5,7 @@
 
 class AutoSprint : public Module {
 public:
-    AutoSprint(Category* c) : Module(c, "AutoSprint", false) {
+    AutoSprint(Category* c) : Module(c, "AutoSprint") {
         //
     };
 public:

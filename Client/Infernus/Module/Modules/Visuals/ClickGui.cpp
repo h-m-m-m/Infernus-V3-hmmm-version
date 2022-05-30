@@ -4,37 +4,36 @@
 #include "../../../Manager/Manager.h"
 
 auto ClickGui::onRender(void) -> void {
-    
+
     auto mgr = this->category->manager;
-    
-    if(ImGui::Begin(this->name.c_str())) {
 
-        for(auto category : mgr->categories) {
-            
-            if (category->modules.empty()) return;
+    if (ImGui::Begin(this->name.c_str())) {
 
-            if(ImGui::BeginMenu(category->name.c_str())) {
+        for (auto category : mgr->categories) {
 
-                for(auto mod : category->modules) {
+            if (ImGui::BeginMenu(category->name.c_str())) {
 
-                    if(ImGui::BeginMenu(mod->name.c_str())) {
+                for (auto mod : category->modules) {
 
-                        if(ImGui::MenuItem(mod->isEnabled ? "Disable" : "Enable")) {
+                    if (ImGui::BeginMenu(mod->name.c_str())) {
+
+                        if (ImGui::MenuItem(mod->isEnabled ? "Disable" : "Enable")) {
 
                             mod->isEnabled = !mod->isEnabled;
 
                         };
 
-                        if (mod->hasOptions) {
-                            if (ImGui::BeginMenu("Options")) {
+                        if (ImGui::BeginMenu("Options")) {
 
 
-                                mod->onRenderOptions();
-                                ImGui::EndMenu();
-
+                            mod->onRenderOptions();
+                            if (ImGui::MenuItem(mod->key != NULL ? "Keybind "+(int)mod->key : "Click to bind")) {
+                                mod->newKey = true;
                             };
+                            ImGui::EndMenu();
+
                         };
-                        
+
                         ImGui::EndMenu();
 
                     };

@@ -22,6 +22,11 @@ auto KeyHook_Callback(uint64_t key, bool isDown) -> void {
             
             if(mod->isEnabled)
                 mod->onKey(key, isDown, &cancel);
+
+            if (mod->newKey && isDown) {
+                mod->newKey = false;
+                mod->setKey(key);
+            };
         };
     };
 

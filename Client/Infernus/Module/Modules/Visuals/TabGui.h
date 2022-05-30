@@ -5,7 +5,7 @@
 
 class TabGui : public Module {
 public:
-    TabGui(Category* c) : Module(c, "TabGui", false) {
+    TabGui(Category* c) : Module(c, "TabGui") {
         this->setKey(VK_TAB);
         this->setState(true);
     };

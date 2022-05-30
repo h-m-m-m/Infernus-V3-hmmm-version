@@ -5,7 +5,7 @@
 
 class ClickGui : public Module {
 public:
-    ClickGui(Category* c) : Module(c, "Click Gui", false) {
+    ClickGui(Category* c) : Module(c, "Click Gui") {
         this->setKey(VK_INSERT);
     };
 public:

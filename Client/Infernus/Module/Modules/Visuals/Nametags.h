@@ -5,7 +5,7 @@
 
 class Nametags : public Module {
 public:
-    Nametags(Category* c) : Module(c, "Nametags", false) {
+    Nametags(Category* c) : Module(c, "Nametags") {
         this->setState(true);
     };
 public:

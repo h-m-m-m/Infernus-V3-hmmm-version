@@ -5,7 +5,7 @@
 
 class Jetpack : public Module {
 public:
-    Jetpack(Category* c) : Module(c, "Jetpack", true) {
+    Jetpack(Category* c) : Module(c, "Jetpack") {
         this->setKey(0x46); /* F */
     };
 public:
