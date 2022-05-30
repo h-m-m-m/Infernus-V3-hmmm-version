@@ -1,17 +1,17 @@
 #include "Entity.h"
 #include "../../../Manager/Manager.h"
 
-typedef void (__thiscall* Actor_Tick)(Actor*, void*);
+typedef void (__thiscall* Actor_Tick)(Actor*, void*, void*);
 Actor_Tick _Actor_Tick;
 
 Manager* ehMgr = nullptr;
 
-auto Actor_Tick_Callback(Actor* e, void* a2) -> void {
+auto Actor_Tick_Callback(Actor* e, void* a2, void* a3) -> void {
     
     if(ehMgr != nullptr)
         ehMgr->entityMap[e->getRuntimeId()] = e;
 
-    _Actor_Tick(e, a2);
+    _Actor_Tick(e, a2, a3);
 };
 
 auto Entity_Hooks::init(void) -> void {
