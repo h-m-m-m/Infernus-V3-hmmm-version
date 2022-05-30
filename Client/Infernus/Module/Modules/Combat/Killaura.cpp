@@ -17,7 +17,7 @@ auto Killaura::onGameMode(GameMode* GM) -> void {
 
     for(auto [runtimeId, entity] : mgr->entityMap) {
 
-        if(runtimeId == player->getRuntimeId() || !player->canAttack(entity, false) || !entity->isMob())
+        if(runtimeId == player->getRuntimeId() || !player->canAttack(entity, false) || !entity->isMob() || !entity->isAlive())
             continue;
         
         auto entPos = entity->getPos();
@@ -44,7 +44,7 @@ auto Killaura::onGameMode(GameMode* GM) -> void {
         if(I >= 3)
             break;
         
-        if(runtimeId == player->getRuntimeId() || !player->canAttack(entity, false) || !entity->isMob())
+        if(runtimeId == player->getRuntimeId() || !player->canAttack(entity, false) || !entity->isMob() || !entity->isAlive())
             continue;
         
         auto entPos = entity->getPos();
