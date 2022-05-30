@@ -15,6 +15,13 @@ auto KeyHook_Callback(uint64_t key, bool isDown) -> void {
     
     for(auto category : hookMgr->categories) {
         for(auto mod : category->modules) {
+
+            if (mod->newKey && isDown) {
+                mod->newKey = false;
+                mod->setKey(key);
+                return;
+            };
+
             if(isDown && mod->key == key) {
                 if(mcGame != nullptr && mcGame->canUseKeys)
                     mod->isEnabled = !mod->isEnabled;
@@ -23,10 +30,6 @@ auto KeyHook_Callback(uint64_t key, bool isDown) -> void {
             if(mod->isEnabled)
                 mod->onKey(key, isDown, &cancel);
 
-            if (mod->newKey && isDown) {
-                mod->newKey = false;
-                mod->setKey(key);
-            };
         };
     };
 

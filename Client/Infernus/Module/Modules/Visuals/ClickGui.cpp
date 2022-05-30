@@ -25,9 +25,8 @@ auto ClickGui::onRender(void) -> void {
 
                         if (ImGui::BeginMenu("Options")) {
 
-
                             mod->onRenderOptions();
-                            if (ImGui::MenuItem(mod->key != NULL ? "Keybind "+(int)mod->key : "Click to bind")) {
+                            if (ImGui::MenuItem(mod->key != NULL ? "Click to bind again" : "Click to bind")) {
                                 mod->newKey = true;
                             };
                             ImGui::EndMenu();
